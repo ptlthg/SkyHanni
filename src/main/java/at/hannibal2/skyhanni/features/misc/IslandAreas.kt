@@ -97,10 +97,8 @@ object IslandAreas {
 
     @SubscribeEvent
     fun onPlayerMove(event: EntityMoveEvent) {
-        if (isEnabled()) {
-            if (event.entity == Minecraft.getMinecraft().thePlayer) {
-                hasMoved = true
-            }
+        if (isEnabled() && event.entity == Minecraft.getMinecraft().thePlayer) {
+            hasMoved = true
         }
     }
 
