@@ -176,6 +176,10 @@ object IslandGraphs {
         }
     }
 
+    fun loadLobby(lobby: String) {
+        reloadFromJson(lobby)
+    }
+
     private fun loadDwarvenMines() {
         if (isGlaciteTunnelsArea(LorenzUtils.skyBlockArea)) {
             reloadFromJson("GLACITE_TUNNELS")
@@ -226,7 +230,7 @@ object IslandGraphs {
 
     @SubscribeEvent
     fun onTick(event: LorenzTickEvent) {
-        if (!LorenzUtils.inSkyBlock) return
+        if (currentIslandGraph == null) return
         if (event.isMod(2)) {
             handleTick()
             checkMoved()
@@ -329,7 +333,7 @@ object IslandGraphs {
 
     @SubscribeEvent
     fun onPlayerMove(event: EntityMoveEvent) {
-        if (LorenzUtils.inSkyBlock && event.entity == Minecraft.getMinecraft().thePlayer) {
+        if (currentIslandGraph != null && event.entity == Minecraft.getMinecraft().thePlayer) {
             hasMoved = true
         }
     }
@@ -475,7 +479,7 @@ object IslandGraphs {
 
     @SubscribeEvent
     fun onRenderWorld(event: LorenzRenderWorldEvent) {
-        if (!LorenzUtils.inSkyBlock) return
+        if (currentIslandGraph == null) return
         val path = fastestPath ?: return
 
         // maybe reuse for debuggin
