@@ -100,8 +100,6 @@ import kotlin.time.Duration.Companion.milliseconds
 object IslandGraphs {
     var currentIslandGraph: Graph? = null
 
-    val existsForThisIsland get() = currentIslandGraph != null
-
     private var pathfindClosestNode: GraphNode? = null
     var closestNode: GraphNode? = null
     private var secondClosestNode: GraphNode? = null
@@ -406,8 +404,8 @@ object IslandGraphs {
      * Activates pathfinding to a location in the island.
      *
      * @param location The goal of the pathfinder.
-     * @param label The name of the naviation goal in chat.
-     * @param color The color of the lines in world.
+     * @param label The name of the navigation goal in chat. Cannot be empty.
+     * @param color The color of the lines in the world.
      * @param onFound The callback that gets fired when the goal is reached.
      * @param condition The pathfinding stops when the condition is no longer valid.
      */
@@ -418,6 +416,7 @@ object IslandGraphs {
         onFound: () -> Unit = {},
         condition: () -> Boolean,
     ) {
+        require(label.isNotEmpty()) { "Label cannot be empty." }
         reset()
         shouldAllowRerouting = false
         pathFind0(location, label, color, onFound, condition)
