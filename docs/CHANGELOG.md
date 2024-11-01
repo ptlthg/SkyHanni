@@ -310,7 +310,7 @@
 + Added additional preprocessing mappings. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/2809)
 + Added compatibility files for preprocessing. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/2872)
 + Added details on where compatibility methods should go for preprocessing. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/2872)
-+ Usages of 'equals' habe been significantly reduced. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/2870)
++ Usages of 'equals' have been significantly reduced. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/2870)
 + Increased performance when comparing `NEUInternalName`s. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/2875)
 + Added dev config option for expanding Chat History length. - Daveed (https://github.com/hannibal002/SkyHanni/pull/2856)
 + Added a detekt rule for hard-coding skull textures. - Daveed (https://github.com/hannibal002/SkyHanni/pull/2774)
