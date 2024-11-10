@@ -25,7 +25,9 @@ object LavaReplacement {
 
     @SubscribeEvent
     fun onIslandChange(event: IslandChangeEvent) {
-        update()
+        if (event.newIsland != IslandType.NONE) {
+            update()
+        }
     }
 
     @SubscribeEvent
