@@ -137,6 +137,7 @@
     <ID>TooManyFunctions:SkyBlockItemModifierUtils.kt$SkyBlockItemModifierUtils</ID>
     <ID>TooManyFunctions:StringUtils.kt$StringUtils</ID>
     <ID>UnsafeCallOnNullableType:BucketedItemTrackerData.kt$BucketedItemTrackerData$it.value[internalName]?.hidden!!</ID>
+    <ID>UnsafeCallOnNullableType:ChatHoverEvent.kt$ChatHoverEvent$component.chatStyle.chatHoverEvent!!</ID>
     <ID>UnsafeCallOnNullableType:ChocolateFactoryDataLoader.kt$ChocolateFactoryDataLoader$upgradeCost!!</ID>
     <ID>UnsafeCallOnNullableType:CollectionUtils.kt$CollectionUtils$this.merge(key, number, Double::plus)!!</ID>
     <ID>UnsafeCallOnNullableType:CollectionUtils.kt$CollectionUtils$this.merge(key, number, Float::plus)!!</ID>
