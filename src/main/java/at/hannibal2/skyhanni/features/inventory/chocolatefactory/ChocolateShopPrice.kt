@@ -37,7 +37,9 @@ object ChocolateShopPrice {
     private var display = emptyList<Renderable>()
     private var products = emptyList<Product>()
 
-    private val menuNamePattern by ChocolateFactoryAPI.patternGroup.pattern(
+    // TODO regex pattern
+
+    val menuNamePattern by ChocolateFactoryAPI.patternGroup.pattern(
         "shop.title",
         "Chocolate Shop",
     )
