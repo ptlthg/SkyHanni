@@ -9,7 +9,7 @@ enum class PestType(
     val displayName: String,
     val damageIndicatorBoss: BossType,
     val spray: SprayType,
-    val vinyl: VinylType,
+    val vinyl: VinylType?,
     val internalName: NEUInternalName,
     val crop: CropType,
 ) {
@@ -98,7 +98,7 @@ enum class PestType(
         "Mouse",
         BossType.GARDEN_PEST_MOUSE,
         SprayType.MOUSE_SPRAY,
-        VinylType.MOUSE_VINLY,
+        vinyl = null,
         "PEST_MOUSE_MONSTER".toInternalName(),
         CropType.MUSHROOM,
     ),
