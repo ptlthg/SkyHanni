@@ -319,6 +319,6 @@ object ChatUtils {
     }
 
     fun consoleError(message: String) {
-        System.err.println(" \nSkyHanni-${SkyHanniMod.version} $message\n ")
+        System.err.println("SkyHanni-${SkyHanniMod.version} $message")
     }
 }
