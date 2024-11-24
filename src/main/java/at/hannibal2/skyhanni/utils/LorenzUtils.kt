@@ -320,7 +320,7 @@ object LorenzUtils {
 
     fun shutdownMinecraft(reason: String? = null) {
         val reasonLine = reason?.let { " Reason: $it" }.orEmpty()
-        ChatUtils.consoleError("forced the game to shutdown.$reasonLine")
+        System.err.println("SkyHanni-@MOD_VERSION@ ${"forced the game to shutdown.$reasonLine"}")
 
         FMLCommonHandler.instance().handleExit(-1)
     }

@@ -1,6 +1,5 @@
 package at.hannibal2.skyhanni.tweaker;
 
-import at.hannibal2.skyhanni.utils.ChatUtils;
 import at.hannibal2.skyhanni.utils.OSUtils;
 
 import javax.swing.JFrame;
@@ -93,7 +92,7 @@ public class DownloadSourceChecker {
                 "Try downloading the file using a different browser (Microsoft Edge, Google Chrome, etc.).";
         }
 
-        ChatUtils.INSTANCE.consoleError("detected a untrusted download source host: '" + readableHost + "'");
+        System.err.println("SkyHanni-" + MOD_VERSION + " detected a untrusted download source host: '" + readableHost + "'");
         JOptionPane.showOptionDialog(
             frame,
             String.format(String.join("\n", SECURITY_POPUP), readableHost) + cutHostMessage,
