@@ -231,6 +231,7 @@ class DailyQuestHelper(val reputationHelper: CrimsonIsleReputationHelper) {
 
     private fun Quest.needsTownBoardLocation(): Boolean = state.let { state ->
         state == QuestState.READY_TO_COLLECT ||
+            state == QuestState.NOT_ACCEPTED ||
             (this is RescueMissionQuest && state == QuestState.ACCEPTED)
     }
 
