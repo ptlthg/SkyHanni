@@ -52,6 +52,7 @@ object GoldenFishTimer {
     private val config get() = SkyHanniMod.feature.fishing.trophyFishing.goldenFishTimer
 
     private val patternGroup = RepoPattern.group("fishing.goldenfish")
+    // TODO add regex tests
     private val spawnPattern by patternGroup.pattern(
         "spawn",
         "§9You spot a §r§6Golden Fish §r§9surface from beneath the lava!",
