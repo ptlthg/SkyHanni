@@ -19,6 +19,7 @@ import at.hannibal2.skyhanni.utils.ChatUtils
 import at.hannibal2.skyhanni.utils.DelayedRun
 import at.hannibal2.skyhanni.utils.ItemUtils.getLore
 import at.hannibal2.skyhanni.utils.LorenzUtils
+import at.hannibal2.skyhanni.utils.RegexUtils.groupOrNull
 import at.hannibal2.skyhanni.utils.RegexUtils.matchMatcher
 import at.hannibal2.skyhanni.utils.RegexUtils.matches
 import at.hannibal2.skyhanni.utils.TabListData
@@ -60,7 +61,7 @@ class QuestLoader(private val dailyQuestHelper: DailyQuestHelper) {
             }
 
             val name = group("name")
-            val amount = group("amount")?.toInt() ?: 1
+            val amount = groupOrNull("amount")?.toInt() ?: 1
             val green = group("status") == "✔"
 
             checkQuest(name, green, amount)
