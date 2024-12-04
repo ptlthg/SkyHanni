@@ -52,19 +52,34 @@ object GoldenFishTimer {
     private val config get() = SkyHanniMod.feature.fishing.trophyFishing.goldenFishTimer
 
     private val patternGroup = RepoPattern.group("fishing.goldenfish")
-    // TODO add regex tests
+
+    /**
+     * REGEX-TEST: §9You spot a §r§6Golden Fish §r§9surface from beneath the lava!
+     */
     private val spawnPattern by patternGroup.pattern(
         "spawn",
         "§9You spot a §r§6Golden Fish §r§9surface from beneath the lava!",
     )
+
+    /**
+     * REGEX-TEST: §9The §r§6Golden Fish §r§9escapes your hook but looks weakened.
+     */
     private val interactPattern by patternGroup.pattern(
         "interact",
         "§9The §r§6Golden Fish §r§9escapes your hook but looks weakened\\.",
     )
+
+    /**
+     * REGEX-TEST: §9The §r§6Golden Fish §r§9is weak!
+     */
     private val weakPattern by patternGroup.pattern(
         "weak",
         "§9The §r§6Golden Fish §r§9is weak!",
     )
+
+    /**
+     * REGEX-TEST: §9The §r§6Golden Fish §r§9swims back beneath the lava...
+     */
     private val despawnPattern by patternGroup.pattern(
         "despawn",
         "§9The §r§6Golden Fish §r§9swims back beneath the lava\\.\\.\\.",
