@@ -63,7 +63,7 @@ enum class OreBlock(
 
     // END
     END_STONE(Blocks.end_stone, { inEnd }),
-    OBSIDIAN(Blocks.obsidian, { inCrystalHollows || inEnd }),
+    OBSIDIAN(Blocks.obsidian, { inCrystalHollows || inMineshaft || inEnd }),
 
     // HARD STONE
     HARD_STONE_HOLLOWS(::isHardStoneHollows, { inCrystalHollows }),
@@ -73,7 +73,7 @@ enum class OreBlock(
     // DWARVEN BLOCKS
     PURE_COAL(Blocks.coal_block, { inDwarvenMines || inCrystalHollows }),
     PURE_IRON(Blocks.iron_block, { inDwarvenMines || inCrystalHollows }, hasInitSound = false),
-    PURE_GOLD(Blocks.gold_block, { inDwarvenMines || inCrystalHollows }, hasInitSound = false),
+    PURE_GOLD(Blocks.gold_block, { inDwarvenMines || inCrystalHollows || inMineshaft }, hasInitSound = false),
     PURE_LAPIS(Blocks.lapis_block, { inDwarvenMines || inCrystalHollows }),
     PURE_REDSTONE(Blocks.redstone_block, { inDwarvenMines || inCrystalHollows }, hasInitSound = false),
     PURE_EMERALD(Blocks.emerald_block, { inDwarvenMines || inCrystalHollows }, hasInitSound = false),
