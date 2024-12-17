@@ -276,6 +276,7 @@ object HoppityEventSummary {
 
     @HandleEvent
     fun onProfileJoin(event: ProfileJoinEvent) {
+        lastSnapshotServer = null
         checkEnded()
     }
 
