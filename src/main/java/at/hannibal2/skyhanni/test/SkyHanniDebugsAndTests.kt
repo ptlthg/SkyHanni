@@ -498,7 +498,8 @@ object SkyHanniDebugsAndTests {
     fun onRenderOverlay(event: GuiRenderEvent.GuiOverlayRenderEvent) {
         if (!LorenzUtils.inSkyBlock) return
 
-        @Suppress("ConstantConditionIf") if (false) {
+        @Suppress("ConstantConditionIf")
+        if (false) {
             itemRenderDebug()
         }
 
@@ -533,7 +534,8 @@ object SkyHanniDebugsAndTests {
 
     @SubscribeEvent
     fun onGuiRenderChestGuiOverlayRender(event: GuiRenderEvent.ChestGuiOverlayRenderEvent) {
-        @Suppress("ConstantConditionIf") if (false) {
+        @Suppress("ConstantConditionIf")
+        if (false) {
             dragAbleTest()
         }
     }
