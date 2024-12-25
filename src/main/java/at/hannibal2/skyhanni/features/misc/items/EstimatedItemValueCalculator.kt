@@ -195,7 +195,7 @@ object EstimatedItemValueCalculator {
             list.add(
                 "  $nameColor${
                     displayName.allLettersFirstUppercase()
-                } ${attr.second}§7: $priceColor${if (price != null) price.shortFormat() else "Unknown"}",
+                } ${attr.second}§7: $priceColor${price?.shortFormat() ?: "Unknown"}",
             )
         }
         // Adding 0.1 so that we always show the estimated item value overlay
@@ -931,7 +931,7 @@ object EstimatedItemValueCalculator {
         return "§b$name $second Shard"
     }
 
-    fun Pair<String, Int>.getAttributePrice(): Double? = getPriceOrCompositePriceForAttribute(
+    private fun Pair<String, Int>.getAttributePrice(): Double? = getPriceOrCompositePriceForAttribute(
         "ATTRIBUTE_SHARD+ATTRIBUTE_$first",
         second,
     )
