@@ -213,7 +213,7 @@
 + Added the Minecraft version to the mod file name. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/2941)
 + Added a warning for empty messages left behind by Stash Compact. - Daveed (https://github.com/hannibal002/SkyHanni/pull/3009)
 + Added option to hide seconds in the Real Time GUI. - Obsidian (https://github.com/hannibal002/SkyHanni/pull/2979)
-+ Improved graph navigation performance. - hannibal2 & Thunderblade (https://github.com/hannibal002/SkyHanni/pull/3083)
++ Improved graph navigation performance. - hannibal2 & Thunderblade73 (https://github.com/hannibal002/SkyHanni/pull/3083)
 + Added Roman numeral support to slayer names in trackers, Profit Tracker Items, and Scoreboard. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/3113)
 
 ### Fixes
