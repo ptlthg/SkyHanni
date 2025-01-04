@@ -35,7 +35,7 @@ object MiningEventDisplay {
     @SubscribeEvent
     fun onRenderOverlay(event: GuiRenderEvent.GuiOverlayRenderEvent) {
         if (!shouldDisplay()) return
-        config.position.renderRenderables(display, posLabel = "Upcoming Mining Events")
+        config.position.renderRenderables(display, posLabel = "Mining Event Tracker")
     }
 
     private fun updateDisplay() {
