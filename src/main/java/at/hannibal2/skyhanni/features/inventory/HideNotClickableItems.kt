@@ -264,7 +264,7 @@ object HideNotClickableItems {
 
         if (stack.isRiftTransferable() || stack.isRiftExportable()) return false
 
-        hideReason = "Not Rift-Transferable or Rift-Transportable!"
+        hideReason = "Not Rift-Transferable or Rift-Exportable!"
         return true
     }
 
