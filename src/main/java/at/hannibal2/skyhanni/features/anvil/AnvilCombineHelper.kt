@@ -17,6 +17,7 @@ import net.minecraft.inventory.ContainerChest
 @SkyHanniModule
 object AnvilCombineHelper {
 
+    // TODO use InventoryUpdatedEvent and item id instead of no cache and lore comparison
     @HandleEvent
     fun onBackgroundDrawn(event: GuiContainerEvent.BackgroundDrawnEvent) {
         if (!LorenzUtils.inSkyBlock) return
