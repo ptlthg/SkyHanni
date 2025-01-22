@@ -32,7 +32,8 @@ object EstimatedWardrobePrice {
             tooltip.add(index++, "")
         } catch (e: IndexOutOfBoundsException) {
             ErrorManager.logErrorStateWithData(
-                "Can not show Estimated Wardeoabe Price", "failed adding the estiamted wardrobe price line to the tooltip",
+                "Can not show Estimated Wardrobe Price",
+                "IndexOutOfBoundsException while trying to add the estimated wardrobe price line to the tooltip",
                 "index" to index,
                 "lore" to lore,
             )
