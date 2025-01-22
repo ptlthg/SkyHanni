@@ -5,6 +5,7 @@ import at.hannibal2.skyhanni.api.event.HandleEvent
 import at.hannibal2.skyhanni.config.ConfigUpdaterMigrator
 import at.hannibal2.skyhanni.events.LorenzToolTipEvent
 import at.hannibal2.skyhanni.skyhannimodule.SkyHanniModule
+import at.hannibal2.skyhanni.test.command.ErrorManager
 import at.hannibal2.skyhanni.utils.LorenzUtils
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
@@ -27,7 +28,15 @@ object EstimatedWardrobePrice {
         val tooltip = event.toolTip
         var index = 3
 
-        tooltip.add(index++, "")
+        try {
+            tooltip.add(index++, "")
+        } catch (e: IndexOutOfBoundsException) {
+            ErrorManager.logErrorStateWithData(
+                "Can not show Estimated Wardeoabe Price", "failed adding the estiamted wardrobe price line to the tooltip",
+                "index" to index,
+                "lore" to lore,
+            )
+        }
         tooltip.addAll(index, lore)
     }
 
