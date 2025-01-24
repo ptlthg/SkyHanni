@@ -383,10 +383,14 @@ object GardenVisitorFeatures {
         val location = event.location
         event.parent.drawString(location.up(2.23), text)
         if (config.rewardWarning.showOverName) {
-            visitor.hasReward()?.let { reward ->
+            val initialOffset = 2.73
+            val heightOffset = 0.25
+            var counter = 0
+            visitor.getRewardWarningAwards().forEach { reward ->
                 val name = reward.displayName
-
-                event.parent.drawString(location.up(2.73), "§c!$name§c!")
+                val offset = initialOffset + (counter * heightOffset)
+                event.parent.drawString(location.up(offset), "§c§l! $name §c§l!")
+                counter++
             }
         }
     }
@@ -436,11 +440,9 @@ object GardenVisitorFeatures {
         if (foundRewards.isNotEmpty()) {
             val wasEmpty = visitor.allRewards.isEmpty()
             visitor.allRewards = foundRewards
-            if (wasEmpty) {
-                visitor.hasReward()?.let { reward ->
-                    if (config.rewardWarning.notifyInChat) {
-                        ChatUtils.chat("Found Visitor Reward ${reward.displayName}§e!")
-                    }
+            if (wasEmpty && config.rewardWarning.notifyInChat) {
+                visitor.getRewardWarningAwards().forEach { reward ->
+                    ChatUtils.chat("Found Visitor Reward ${reward.displayName}§e!")
                 }
             }
         }
