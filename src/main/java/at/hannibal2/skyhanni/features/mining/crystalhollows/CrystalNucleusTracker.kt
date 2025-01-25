@@ -6,8 +6,10 @@ import at.hannibal2.skyhanni.api.event.HandleEvent.Companion.HIGH
 import at.hannibal2.skyhanni.config.commands.CommandCategory
 import at.hannibal2.skyhanni.config.commands.CommandRegistrationEvent
 import at.hannibal2.skyhanni.data.IslandType
+import at.hannibal2.skyhanni.data.ItemAddManager
 import at.hannibal2.skyhanni.events.ConfigLoadEvent
 import at.hannibal2.skyhanni.events.IslandChangeEvent
+import at.hannibal2.skyhanni.events.ItemAddEvent
 import at.hannibal2.skyhanni.events.chat.SkyHanniChatEvent
 import at.hannibal2.skyhanni.events.mining.CrystalNucleusLootEvent
 import at.hannibal2.skyhanni.features.mining.crystalhollows.CrystalNucleusApi.EPIC_BAL_ITEM
@@ -174,6 +176,15 @@ object CrystalNucleusTracker {
         }
 
         tracker.addPriceFromButton(this)
+    }
+
+    @HandleEvent
+    fun onItemAdd(event: ItemAddEvent) {
+        if (!isEnabled()) return
+
+        if (event.source == ItemAddManager.Source.COMMAND) {
+            tracker.addItem(event.internalName, event.amount, command = true)
+        }
     }
 
     init {
