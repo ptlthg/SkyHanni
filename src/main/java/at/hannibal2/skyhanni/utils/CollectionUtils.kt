@@ -483,4 +483,12 @@ object CollectionUtils {
         putAll(entries)
     }
 
+    fun <T> Collection<T>.indexOfFirstOrNull(predicate: (T) -> Boolean): Int? {
+        for ((index, element) in this.withIndex()) {
+            if (predicate(element)) {
+                return index
+            }
+        }
+        return null
+    }
 }
