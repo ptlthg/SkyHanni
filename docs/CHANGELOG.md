@@ -258,7 +258,7 @@
 + Fixed museum milestone not affecting available bits. - j10a1n15 (https://github.com/hannibal002/SkyHanni/pull/3288)
 + Fixed Scavenger V NPC price from 15m to 0. - YoGoUrT_20 (https://github.com/hannibal002/SkyHanni/pull/3326)
 + Fixed Crown Of Avarice counter. - Tryp0xd (https://github.com/hannibal002/SkyHanni/pull/3357)
-+ Fixed error in Year Slice 400 team finder with Baker emblem. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/3367)
++ Fixed error in Year Slice 400 team finder with Banker emblem. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/3367)
 + Fixed NEU's `/pv` command not functioning for your profile. - Daveed (https://github.com/hannibal002/SkyHanni/pull/3361)
 + Fixed occasional offsets in in-world text render positions. - Nessiesson (https://github.com/hannibal002/SkyHanni/pull/3364)
 
