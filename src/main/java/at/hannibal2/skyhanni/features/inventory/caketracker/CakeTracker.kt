@@ -354,6 +354,7 @@ object CakeTracker {
         val ownedColor = if (config.displayType == DisplayType.OWNED_CAKES) "§a" else "§e"
         val missingColor = if (config.displayType == DisplayType.MISSING_CAKES) "§a" else "§e"
 
+        // TODO use addRenderableButton and add function that expects a boolean
         add(
             Renderable.optionalLink(
                 "$ownedColor[Owned]",
