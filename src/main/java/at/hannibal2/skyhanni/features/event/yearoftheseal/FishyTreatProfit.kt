@@ -55,6 +55,8 @@ object FishyTreatProfit {
         for ((slot, item) in event.inventoryItems) {
             // ignore the last line of menu items
             if (slot > 44) continue
+            // background items
+            if (item.name == " ") continue
             try {
                 readItem(slot, item, table)
             } catch (e: Throwable) {

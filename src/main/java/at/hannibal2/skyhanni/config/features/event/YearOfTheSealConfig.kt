@@ -15,9 +15,9 @@ class YearOfTheSealConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    var fishyTreatProfit: Boolean = false
+    var fishyTreatProfit: Boolean = true
 
     @Expose
     @ConfigLink(owner = YearOfTheSealConfig::class, field = "fishyTreatProfit")
-    var fishyTreatProfitPosition: Position = Position(206, 158)
+    var fishyTreatProfitPosition: Position = Position(170, 150)
 }
