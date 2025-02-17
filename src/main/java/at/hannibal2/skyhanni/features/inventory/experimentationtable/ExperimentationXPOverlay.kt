@@ -12,6 +12,7 @@ import net.minecraft.init.Items
 
 @SkyHanniModule
 object ExperimentationXPOverlay {
+    private val config get() = SkyHanniMod.feature.inventory.experimentationTable
 
     private val patternGroup = RepoPattern.group("enchanting.experiments")
 
@@ -44,8 +45,5 @@ object ExperimentationXPOverlay {
         }
     }
 
-    fun isEnabled(): Boolean {
-        return ExperimentationTableApi.superpairInventory.isInside() &&
-            SkyHanniMod.feature.inventory.experimentationTable.superpairsXPOverlay
-    }
+    private fun isEnabled() = ExperimentationTableApi.superpairInventory.isInside() && config.superpairsXPOverlay
 }
