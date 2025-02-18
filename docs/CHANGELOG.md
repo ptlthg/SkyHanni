@@ -337,7 +337,7 @@
 + Fixed NEU Souls in Dwarven Mines and Glacite Tunnels. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/3435)
 + Possibly fixed some config reset errors. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/3400)
 + Fixed incorrect spacing in all Item Trackers. - Daveed (https://github.com/hannibal002/SkyHanni/pull/3452)
-+ Fixed mayor update when no mayor is known. - j10a1n15 (https://github.com/hannibal002/SkyHanni/pull/3455)
++ Fixed mayor data updating too slow after new mayor takes office. - j10a1n15 (https://github.com/hannibal002/SkyHanni/pull/3455)
 
 ### Technical Details
 
