@@ -275,7 +275,7 @@ object ElectionApi {
             add("assumeMayor: $assumeMayor")
         }
 
-        if (currentMayor == null || currentMayor == ElectionCandidate.UNKNOWN || assumeMayor == ElectionCandidate.DISABLED) {
+        if (currentMayor == null || currentMayor == ElectionCandidate.UNKNOWN || assumeMayor != ElectionCandidate.DISABLED) {
             event.addData(list)
         } else {
             event.addIrrelevant(list)
