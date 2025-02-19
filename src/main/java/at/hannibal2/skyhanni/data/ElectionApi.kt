@@ -258,8 +258,11 @@ object ElectionApi {
 
     @HandleEvent
     fun onDebug(event: DebugDataCollectEvent) {
-        event.title("Mayor")
-        event.addIrrelevant {
+        event.title("Mayor Election")
+
+        val assumeMayor = SkyHanniMod.feature.dev.debug.assumeMayor.get()
+
+        val list = buildList {
             add("Current Mayor: ${currentMayor?.name ?: "Unknown"}")
             add("Active Perks: ${currentMayor?.activePerks}")
             add("Last Update: ${lastUpdate.formattedDate("EEEE, MMM d h:mm a")} (${lastUpdate.passedSince()} ago)")
@@ -269,6 +272,14 @@ object ElectionApi {
             if (jerryExtraMayor.first != null) {
                 add("Jerry Mayor: ${jerryExtraMayor.first?.name} expiring at: ${jerryExtraMayor.second.timeUntil()}")
             }
+            add("assumeMayor: $assumeMayor")
         }
+
+        if (currentMayor == null || currentMayor == ElectionCandidate.UNKNOWN || assumeMayor == ElectionCandidate.DISABLED) {
+            event.addData(list)
+        } else {
+            event.addIrrelevant(list)
+        }
+
     }
 }
