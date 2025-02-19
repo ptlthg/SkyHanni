@@ -212,11 +212,15 @@ data class LorenzVec(
     private val normY = if (y == 0.0) 0.0 else y
     private val normZ = if (z == 0.0) 0.0 else z
 
-    override fun equals(other: Any?) =
-        other is LorenzVec &&
-            normX == other.normX &&
-            normY == other.normY &&
-            normZ == other.normZ
+    override fun equals(other: Any?): Boolean {
+        if (other is LorenzVec) {
+            val v2: LorenzVec = other
+            if (this.x == v2.x && this.y == v2.y && this.z == v2.z) {
+                return true
+            }
+        }
+        return false
+    }
 
     override fun hashCode() = 31 * (31 * normX.hashCode() + normY.hashCode()) + normZ.hashCode()
 
