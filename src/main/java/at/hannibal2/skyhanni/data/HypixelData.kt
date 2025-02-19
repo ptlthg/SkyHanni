@@ -202,7 +202,7 @@ object HypixelData {
 
         TabWidget.SERVER.matchMatcherFirstLine {
             serverId = group("serverid")
-            HypixelLocationApi.checkServerId(serverId)
+            HypixelLocationApi.checkEquals()
             lastSuccessfulServerIdFetchTime = SimpleTimeMark.now()
             lastSuccessfulServerIdFetchType = "tab list"
             failedServerIdFetchCounter = 0
@@ -212,7 +212,7 @@ object HypixelData {
         serverIdScoreboardPattern.firstMatcher(ScoreboardData.sidebarLinesFormatted) {
             val serverType = if (group("servertype") == "M") "mega" else "mini"
             serverId = "$serverType${group("serverid")}"
-            HypixelLocationApi.checkServerId(serverId)
+            HypixelLocationApi.checkEquals()
             lastSuccessfulServerIdFetchTime = SimpleTimeMark.now()
             lastSuccessfulServerIdFetchType = "scoreboard"
             failedServerIdFetchCounter = 0
@@ -448,7 +448,7 @@ object HypixelData {
 
         if (inSkyBlock == skyBlock) return
         skyBlock = inSkyBlock
-        HypixelLocationApi.checkSkyblock(skyBlock)
+        HypixelLocationApi.checkEquals()
     }
 
     private fun sendLocraw() {
@@ -517,7 +517,7 @@ object HypixelData {
         }
 
         hypixelLive = hypixel && !hypixelAlpha
-        HypixelLocationApi.checkHypixel(hypixelLive)
+        HypixelLocationApi.checkEquals()
     }
 
     private fun checkSidebar() {
@@ -565,7 +565,7 @@ object HypixelData {
             val oldIsland = skyBlockIsland
             skyBlockIsland = newIsland
             IslandChangeEvent(newIsland, oldIsland).post()
-            HypixelLocationApi.checkIsland(skyBlockIsland)
+            HypixelLocationApi.checkEquals()
 
             if (newIsland == IslandType.UNKNOWN) {
                 ChatUtils.debug("Unknown island detected: '$foundIsland'")
