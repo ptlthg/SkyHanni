@@ -128,6 +128,12 @@ object PreciseGuessBurrow {
     @HandleEvent
     fun onDebug(event: DebugDataCollectEvent) {
         event.title("Precise Burrow Guess")
+
+        if (!DianaApi.isDoingDiana()) {
+            event.addIrrelevant("not doing diana")
+            return
+        }
+
         val guess = guessBurrowLocation()
         event.addIrrelevant {
             add("Burrow Guess: " + (guess?.toCleanString() ?: "No Guess"))
