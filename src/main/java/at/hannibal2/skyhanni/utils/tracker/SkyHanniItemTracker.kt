@@ -141,9 +141,10 @@ open class SkyHanniItemTracker<Data : ItemTrackerData>(
             val lore: List<String> = buildLore(loreText, hidden, newDrop, internalName)
 
             // TODO add row abstraction to api, with common click+hover behaviour
-            fun string(string: String): Renderable = if (isInventoryOpen()) Renderable.clickAndHover(
-                string, lore,
-                onClick = {
+            fun string(string: String): Renderable = if (isInventoryOpen()) Renderable.clickable(
+                string,
+                tips = lore,
+                onLeftClick = {
                     if (KeyboardManager.isModifierKeyDown()) itemRemover.invoke(internalName, cleanName)
                     else itemHider.invoke(internalName, hidden)
                     update()
