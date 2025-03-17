@@ -33,7 +33,7 @@ class CombatConfig {
     @Expose
     @ConfigOption(name = "Armor Stack Display", desc = "")
     @Accordion
-    var stackDisplay: StackDisplayConfig = StackDisplayConfig()
+    var stackDisplayConfig: StackDisplayConfig = StackDisplayConfig()
 
     @Expose
     @ConfigOption(name = "Summonings", desc = "")
