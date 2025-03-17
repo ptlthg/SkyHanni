@@ -39,11 +39,11 @@ import at.hannibal2.skyhanni.utils.chat.TextHelper.asComponent
 import at.hannibal2.skyhanni.utils.chat.TextHelper.onClick
 import at.hannibal2.skyhanni.utils.chat.TextHelper.onHover
 import at.hannibal2.skyhanni.utils.chat.TextHelper.send
+import at.hannibal2.skyhanni.utils.compat.MinecraftCompat
 import at.hannibal2.skyhanni.utils.compat.getItemOnCursor
 import at.hannibal2.skyhanni.utils.repopatterns.RepoPattern
 import at.hannibal2.skyhanni.utils.system.PlatformUtils
 import kotlinx.coroutines.launch
-import net.minecraft.client.Minecraft
 import net.minecraft.init.Items
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -240,7 +240,7 @@ object ItemUtils {
 
     fun getItemsInInventory(withCursorItem: Boolean = false): List<ItemStack> {
         val list: LinkedList<ItemStack> = LinkedList()
-        val player = Minecraft.getMinecraft().thePlayer ?: ErrorManager.skyHanniError("getItemsInInventoryWithSlots: player is null!")
+        val player = MinecraftCompat.localPlayer
 
         for (slot in player.openContainer.inventorySlots) {
             if (slot.hasStack) {
