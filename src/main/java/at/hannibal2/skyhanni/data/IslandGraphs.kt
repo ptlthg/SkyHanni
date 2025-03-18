@@ -99,6 +99,22 @@ import kotlin.time.Duration.Companion.milliseconds
 @SkyHanniModule
 object IslandGraphs {
     var currentIslandGraph: Graph? = null
+    var disabledNodesReason: String? = null
+        private set
+
+    fun disableNodes(reason: String, center: LorenzVec, radius: Double) {
+        val graph = currentIslandGraph ?: return
+        disabledNodesReason = reason
+        for (node in graph.nodes.filter { it.position.distance(center) < radius }) {
+            node.enabled = false
+        }
+    }
+
+    fun enableAllNodes() {
+        disabledNodesReason = null
+        val graph = currentIslandGraph ?: return
+        graph.nodes.forEach { it.enabled = true }
+    }
 
     private var pathfindClosestNode: GraphNode? = null
     var closestNode: GraphNode? = null
@@ -142,6 +158,7 @@ object IslandGraphs {
 
     @HandleEvent
     fun onIslandChange(event: IslandChangeEvent) {
+        enableAllNodes()
         if (currentIslandGraph != null) return
         if (event.newIsland == IslandType.NONE) return
         loadIsland(event.newIsland)
@@ -228,9 +245,16 @@ object IslandGraphs {
     fun onTick(event: SkyHanniTickEvent) {
         if (currentIslandGraph == null) return
         if (event.isMod(2)) {
-            handleTick()
-            checkMoved()
+            update()
         }
+    }
+
+    fun update(force: Boolean = false) {
+        if (force) {
+            pathfindClosestNode = null
+        }
+        handleTick()
+        checkMoved()
     }
 
     private fun handleTick() {
