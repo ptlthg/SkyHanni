@@ -265,6 +265,7 @@ object SkyHanniConfigSearchResetCommand {
         return Triple(field, obj, parentObject)
     }
 
+    @Suppress("CyclomaticComplexMethod")
     private fun loadAllFields(parentName: String, obj: Any, depth: Int = 0): Map<String, Any?> {
         val map = mutableMapOf<String, Any?>()
         if (depth == 8) { // this is only a backup for safety, needs increasing someday maybe
