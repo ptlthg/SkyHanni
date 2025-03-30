@@ -288,6 +288,7 @@ object SkyHanniConfigSearchResetCommand {
                 newObj !is Long &&
                 newObj !is Int &&
                 newObj !is Double &&
+                newObj !is Float &&
                 newObj !is Position &&
                 newObj !is Map<*, *> &&
                 newObj !is List<*> &&
