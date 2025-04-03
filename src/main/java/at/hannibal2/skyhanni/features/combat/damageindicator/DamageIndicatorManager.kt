@@ -228,23 +228,21 @@ object DamageIndicatorManager {
             }
             event.drawDynamicText(location, bossName, sizeBossName, -9f, smallestDistanceVew = smallestDistanceVew)
 
-            val icons = iconCache[data] ?: run {
-                val newIcons = buildList {
+            val icons = iconCache.getOrPut(data) {
+                buildList {
                     if (config.shurikenIndicator && entity.getNameTagWith(3, "§b✯") != null) {
                         add(
                             if (config.compactStatusEffects) "§b✯"
-                            else "§bShuriken"
+                            else "§bShuriken",
                         )
                     }
                     if (config.twilightIndicator && entity.getNameTagWith(3, "§5ᛤ") != null) {
                         add(
                             if (config.compactStatusEffects) "§5ᛤ"
-                            else "§5Twilight"
+                            else "§5Twilight",
                         )
                     }
                 }
-                iconCache[data] = newIcons
-                newIcons
             }
 
             val iconString = icons.joinToString(if (config.compactStatusEffects) "" else " ")
@@ -255,7 +253,7 @@ object DamageIndicatorManager {
                     iconString,
                     sizeBossName,
                     diff,
-                    smallestDistanceVew = smallestDistanceVew
+                    smallestDistanceVew = smallestDistanceVew,
                 )
                 diff += 22f
             } else diff += 4f
