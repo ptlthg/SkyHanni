@@ -37,6 +37,7 @@ object GuiRenderUtils {
 
     private val fr: FontRenderer get() = Minecraft.getMinecraft().fontRendererObj
 
+    // TODO change to extend function of DrawContext
     private fun drawStringCentered(context: DrawContext, str: String?, x: Float, y: Float, shadow: Boolean, color: Int) {
         str ?: return
         val strLen = fr.getStringWidth(str)
@@ -56,6 +57,7 @@ object GuiRenderUtils {
         )
     }
 
+    // TODO change to extend function of DrawContext
     fun drawStringCenteredScaledMaxWidth(context: DrawContext, text: String, x: Float, y: Float, shadow: Boolean, length: Int, color: Int) {
         context.matrices.pushMatrix()
         val strLength = fr.getStringWidth(text)
@@ -136,6 +138,7 @@ object GuiRenderUtils {
         )
     }
 
+    // TODO change to extend function of DrawContext
     fun drawScaledRec(context: DrawContext, left: Int, top: Int, right: Int, bottom: Int, color: Int, inverseScale: Float) {
         drawRect(
             context,
@@ -156,6 +159,7 @@ object GuiRenderUtils {
         //#endif
     }
 
+    // TODO change to extend function of DrawContext
     fun renderItemAndBackground(context: DrawContext, item: ItemStack, x: Int, y: Int, color: Int) {
         renderItemStack(item, x, y)
         drawRect(context, x, y, x + 16, y + 16, color)

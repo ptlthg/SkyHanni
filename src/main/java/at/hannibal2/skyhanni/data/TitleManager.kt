@@ -429,6 +429,7 @@ object TitleManager {
         globalTitle.tryRenderGlobalTitle(event.context)
     }
 
+    // TODO move function inside title context class, then make this a extneded function of DrawContext
     private fun TitleContext.tryRenderGlobalTitle(context: DrawContext) {
         val guiWidth = GuiScreenUtils.scaledWindowWidth
         val guiHeight = GuiScreenUtils.scaledWindowHeight

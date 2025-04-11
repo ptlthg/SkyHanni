@@ -80,6 +80,7 @@ abstract class GuideGui<pageEnum : Enum<*>>(defaultScreen: pageEnum) : SkyhanniB
         val guiLeft = (width - sizeX) / 2
         val guiTop = (height - sizeY) / 2
 
+
         val relativeMouseX = originalMouseX - guiLeft
         val relativeMouseY = originalMouseY - guiTop
 
