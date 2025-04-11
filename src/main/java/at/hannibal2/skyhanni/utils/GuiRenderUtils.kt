@@ -56,7 +56,6 @@ object GuiRenderUtils {
         )
     }
 
-    // TODO change to extend function of DrawContext
     fun drawStringCenteredScaledMaxWidth(context: DrawContext, text: String, x: Float, y: Float, shadow: Boolean, length: Int, color: Int) {
         context.matrices.pushMatrix()
         val strLength = fr.getStringWidth(text)
@@ -137,7 +136,6 @@ object GuiRenderUtils {
         )
     }
 
-    // TODO change to extend function of DrawContext
     fun drawScaledRec(context: DrawContext, left: Int, top: Int, right: Int, bottom: Int, color: Int, inverseScale: Float) {
         drawRect(
             context,
@@ -158,9 +156,9 @@ object GuiRenderUtils {
         //#endif
     }
 
-    fun renderItemAndBackground(item: ItemStack, x: Int, y: Int, color: Int) {
+    fun renderItemAndBackground(context: DrawContext, item: ItemStack, x: Int, y: Int, color: Int) {
         renderItemStack(item, x, y)
-        GuiScreen.drawRect(x, y, x + 16, y + 16, color)
+        drawRect(context, x, y, x + 16, y + 16, color)
     }
 
     /** @Mojang */
