@@ -23,6 +23,7 @@ object StereoHarmonyDiscReplacer {
     )
     private val iconCache: MutableMap<String, ItemStack> = mutableMapOf()
 
+    // TODO cache. load on invenotry open only once, then read from a map slotId -> item stack
     @HandleEvent
     fun replaceItem(event: ReplaceItemEvent) {
         if (!config.replaceMenuIcons) return
