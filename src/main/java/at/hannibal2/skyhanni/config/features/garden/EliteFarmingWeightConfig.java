@@ -2,11 +2,14 @@ package at.hannibal2.skyhanni.config.features.garden;
 
 import at.hannibal2.skyhanni.config.FeatureToggle;
 import at.hannibal2.skyhanni.config.core.config.Position;
+import at.hannibal2.skyhanni.utils.ItemPriceSource;
 import com.google.gson.annotations.Expose;
 import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean;
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorDropdown;
 import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorText;
 import io.github.notenoughupdates.moulconfig.annotations.ConfigLink;
 import io.github.notenoughupdates.moulconfig.annotations.ConfigOption;
+import io.github.notenoughupdates.moulconfig.observer.Property;
 
 public class EliteFarmingWeightConfig {
     @Expose
@@ -23,13 +26,34 @@ public class EliteFarmingWeightConfig {
 
     @Expose
     @ConfigOption(name = "Leaderboard Ranking", desc = "Show your position in the farming weight leaderboard. " +
-        "Only if your farming weight is high enough! Updates every 10 minutes.")
+        "Only if your farming weight is high enough! Updates periodically.")
     @ConfigEditorBoolean
     public boolean leaderboard = true;
 
     @Expose
+    @ConfigOption(name = "Leaderboard Type", desc = "Select normal or monthly weight leaderboard!")
+    @ConfigEditorDropdown
+    public EliteFarmingWeightLbType eliteLbType = EliteFarmingWeightLbType.DEFAULT;
+
+    public enum EliteFarmingWeightLbType {
+        DEFAULT("Normal"),
+        MONTHLY("Monthly");
+
+        private final String displayName;
+
+        EliteFarmingWeightLbType(String displayName) {
+            this.displayName = displayName;
+        }
+
+        @Override
+        public String toString() {
+            return displayName;
+        }
+    }
+
+    @Expose
     @ConfigOption(name = "Overtake ETA", desc = "Show a timer estimating when you'll move up a spot in the leaderboard! " +
-        "Will show an ETA to rank #10,000 if you're not on the leaderboard yet.")
+        "Will show an ETA to placement weight required if not on the leaderboard yet.")
     @ConfigEditorBoolean
     public boolean overtakeETA = false;
 
@@ -42,6 +66,12 @@ public class EliteFarmingWeightConfig {
     @ConfigOption(name = "Always ETA", desc = "Show the Overtake ETA always, even when not farming at the moment.")
     @ConfigEditorBoolean
     public boolean overtakeETAAlways = true;
+
+    @Expose
+    @ConfigOption(name = "Use ETA Goal", desc = "Use the ETA Goal number instead of the next upcoming rank. Useful when your rank is in the" +
+        "ten thousands and you don't want to see small ETAs.")
+    @ConfigEditorBoolean
+    public boolean useEtaGoalRank = true;
 
     @Expose
     @ConfigOption(name = "ETA Goal", desc = "Override the Overtake ETA to show when you'll reach the specified rank (if not there yet). (Default: \"10,000\")")
