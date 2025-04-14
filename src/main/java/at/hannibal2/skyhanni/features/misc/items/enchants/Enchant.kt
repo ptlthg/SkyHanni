@@ -19,6 +19,8 @@ import net.minecraft.item.ItemStack
 import java.util.TreeSet
 
 open class Enchant : Comparable<Enchant> {
+
+    // TODO move this away. split json data from logic
     @Expose
     var nbtName = ""
 
