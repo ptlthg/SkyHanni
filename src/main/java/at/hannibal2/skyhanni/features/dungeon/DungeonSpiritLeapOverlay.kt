@@ -39,6 +39,7 @@ object DungeonSpiritLeapOverlay {
         if (!isEnabled()) return
 
         val gui = event.gui
+        // TOOD find a way to make InventoryDetector usable here.
         if (gui !is GuiChest || InventoryUtils.openInventoryName().removeColor() !in validInventoryNames) return
         containerWidth = gui.width
         containerHeight = gui.height
