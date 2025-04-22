@@ -305,7 +305,7 @@ object EntityOutlineRenderer {
                 camera,
                 vector.x,
                 vector.y,
-                vector.z
+                vector.z,
             ) || entity.getFirstPassenger() === MinecraftCompat.localPlayerOrNull
             )
     // Only render if renderManager would render and the world is loaded at the entity
@@ -339,7 +339,7 @@ object EntityOutlineRenderer {
             GL30.glBlitFramebuffer(
                 0, 0, frameToCopy.framebufferWidth, frameToCopy.framebufferHeight,
                 0, 0, frameToPaste.framebufferWidth, frameToPaste.framebufferHeight,
-                buffersToCopy, GL11.GL_NEAREST
+                buffersToCopy, GL11.GL_NEAREST,
             )
         }
     }
@@ -382,7 +382,7 @@ object EntityOutlineRenderer {
             // Get all entities to render no xray outlines, using pre-filtered entities (no need to test xray outlined entities)
             val noXrayOutlineEvent = RenderEntityOutlineEvent(
                 RenderEntityOutlineEvent.Type.NO_XRAY,
-                xrayOutlineEvent.entitiesToChooseFrom
+                xrayOutlineEvent.entitiesToChooseFrom,
             )
             noXrayOutlineEvent.post()
             // Cache the entities for future use
