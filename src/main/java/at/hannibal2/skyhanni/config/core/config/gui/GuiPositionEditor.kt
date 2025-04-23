@@ -18,6 +18,7 @@
  */
 package at.hannibal2.skyhanni.config.core.config.gui
 
+import at.hannibal2.skyhanni.SkyHanniMod
 import at.hannibal2.skyhanni.config.core.config.Position
 import at.hannibal2.skyhanni.data.GuiEditManager
 import at.hannibal2.skyhanni.data.GuiEditManager.getAbsX
@@ -82,24 +83,33 @@ class GuiPositionEditor(
 
         // When the mouse isn't currently hovering over a gui element
         if (displayPos == -1) {
+            val extraInfo = SkyHanniMod.feature.gui.keyBindOpen == Keyboard.KEY_NONE
             renderHover(
-                listOf(
-                    "§cSkyHanni Position Editor",
-                    "§eTo edit hidden GUI elements set a key in /sh edit",
-                    "§ethen click that key while the GUI element is visible",
-                ),
+                buildList {
+                    add("§cSkyHanni Position Editor")
+                    if (extraInfo) {
+                        add("§aTo edit hidden GUI elements set a key in /sh edit")
+                        add("§athen click that key while the GUI element is visible")
+                    }
+                },
             )
             return
         }
         renderHover(getTextForPos(positions[displayPos]))
     }
 
-    private fun getTextForPos(pos: Position) = listOf(
-        "§cSkyHanni Position Editor",
-        "§b ${pos.internalName}",
-        "§7x: §e${pos.x}§7, y: §e${pos.y}§7, scale: §e${pos.scale.roundTo(2)}",
-        "§aRight-Click to open associated config options",
-    )
+    private fun getTextForPos(pos: Position): List<String> {
+        if (pos.clicked) return listOf("§7x: §e${pos.x}§7, y: §e${pos.y}")
+
+        return listOf(
+            "§cSkyHanni Position Editor",
+            "§b${pos.internalName}",
+            "  §7x: §e${pos.x}§7, y: §e${pos.y}§7, scale: §e${pos.scale.roundTo(2)}",
+            "",
+            "§eRight-Click to open associated config options!",
+            "§eUse Scroll-Wheel to resize!",
+        )
+    }
 
     private fun renderHover(text: List<String>) {
         RenderableTooltips.setTooltipForRender(text.map { Renderable.string(it) })
@@ -113,7 +123,8 @@ class GuiPositionEditor(
 
         val (mouseX, mouseY) = GuiScreenUtils.mousePos
 
-        for ((index, position) in positions.withIndex()) {
+        var alreadyHadHover = false
+        for ((index, position) in positions.withIndex().reversed()) {
             var elementWidth = position.getDummySize(true).x
             var elementHeight = position.getDummySize(true).y
             if (position.clicked) {
@@ -133,7 +144,7 @@ class GuiPositionEditor(
                 y - border,
                 elementWidth + border * 2,
                 elementHeight + border * 2,
-            )
+            ) && !alreadyHadHover
 
             val gray = -0x7fbfbfc0
             GuiRenderUtils.drawRect(
@@ -145,6 +156,7 @@ class GuiPositionEditor(
             )
 
             if (isHovering) {
+                alreadyHadHover = true
                 hoveredPos = index
             }
         }
