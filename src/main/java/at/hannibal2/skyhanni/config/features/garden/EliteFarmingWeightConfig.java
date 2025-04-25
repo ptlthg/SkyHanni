@@ -30,6 +30,27 @@ public class EliteFarmingWeightConfig {
     public boolean leaderboard = true;
 
     @Expose
+    @ConfigOption(name = "Leaderboard Type", desc = "Select normal or monthly weight leaderboard!")
+    @ConfigEditorDropdown
+    public Property<EliteFarmingWeightLbType> eliteLbType = Property.of(EliteFarmingWeightLbType.DEFAULT);
+
+    public enum EliteFarmingWeightLbType {
+        DEFAULT("Normal"),
+        MONTHLY("Monthly");
+
+        private final String displayName;
+
+        EliteFarmingWeightLbType(String displayName) {
+            this.displayName = displayName;
+        }
+
+        @Override
+        public String toString() {
+            return displayName;
+        }
+    }
+
+    @Expose
     @ConfigOption(name = "Overtake ETA", desc = "Show a timer estimating when you'll move up a spot in the leaderboard! " +
         "Will show an ETA to placement weight required if not on the leaderboard yet.")
     @ConfigEditorBoolean
@@ -46,7 +67,7 @@ public class EliteFarmingWeightConfig {
     public boolean overtakeETAAlways = true;
 
     @Expose
-    @ConfigOption(name = "Use ETA Goal", desc = "Use the ETA Goal number instead of the next upcoming rank. Useful when your rank is in the" +
+    @ConfigOption(name = "Use ETA Goal", desc = "Use the ETA Goal number instead of the next upcoming rank. Useful when your rank is in the " +
         "ten thousands and you don't want to see small ETAs.")
     @ConfigEditorBoolean
     public Property<Boolean> useEtaGoalRank = Property.of(true);
