@@ -36,6 +36,7 @@ class RiftConfig {
     @Expose
     @ConfigOption(name = "Motes Orbs", desc = "")
     @Accordion
+    // TODO move into MotesConfig
     var motesOrbs: MotesOrbsConfig = MotesOrbsConfig()
 
     @Expose
