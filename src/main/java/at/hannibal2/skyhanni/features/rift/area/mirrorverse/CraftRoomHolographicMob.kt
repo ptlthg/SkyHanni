@@ -24,6 +24,7 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.AxisAlignedBB
 import kotlin.math.abs
 
+// TODO fix looking at direction, slime size, helmet/skull of zombie
 @SkyHanniModule
 object CraftRoomHolographicMob {
 
