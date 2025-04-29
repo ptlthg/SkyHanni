@@ -104,6 +104,7 @@ object RenderUtils {
         highlight(color.toColor())
     }
 
+    // TODO eventually removed awt.Color support, we should only use moulconfig.ChromaColour or LorenzColor
     fun Slot.highlight(color: Color) {
         highlight(color, xDisplayPosition, yDisplayPosition)
     }
