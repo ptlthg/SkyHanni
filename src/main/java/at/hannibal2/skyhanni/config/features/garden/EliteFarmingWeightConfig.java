@@ -32,15 +32,15 @@ public class EliteFarmingWeightConfig {
     @Expose
     @ConfigOption(name = "Leaderboard Type", desc = "Select normal or monthly weight leaderboard!")
     @ConfigEditorDropdown
-    public Property<EliteFarmingWeightLbType> eliteLbType = Property.of(EliteFarmingWeightLbType.DEFAULT);
+    public Property<EliteFarmingWeightLBType> eliteLBType = Property.of(EliteFarmingWeightLBType.DEFAULT);
 
-    public enum EliteFarmingWeightLbType {
-        DEFAULT("Normal"),
+    public enum EliteFarmingWeightLBType {
+        DEFAULT("All-Time"),
         MONTHLY("Monthly");
 
         private final String displayName;
 
-        EliteFarmingWeightLbType(String displayName) {
+        EliteFarmingWeightLBType(String displayName) {
             this.displayName = displayName;
         }
 
