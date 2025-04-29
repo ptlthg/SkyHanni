@@ -37,7 +37,6 @@ import at.hannibal2.skyhanni.utils.json.BaseGsonBuilder
 import at.hannibal2.skyhanni.utils.json.SkyHanniTypeAdapters
 import at.hannibal2.skyhanni.utils.json.fromJson
 import at.hannibal2.skyhanni.utils.renderables.Renderable
-import at.hannibal2.skyhanni.utils.renderables.RenderableString
 import com.google.gson.JsonObject
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.minutes
@@ -183,7 +182,7 @@ object FarmingWeightDisplay {
 
                 isLoadingWeight = true
                 if (display.isEmpty()) {
-                    display = listOf(RenderableString("§6Farming Weight§7: §eLoading.."))
+                    display = Renderable.singeltonString("§6Farming Weight§7: §eLoading..")
                 }
                 SkyHanniMod.coroutineScope.launch {
                     loadWeight(localProfile)
