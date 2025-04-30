@@ -520,9 +520,8 @@ object FarmingWeightDisplay {
 
             if (isEtaEnabled()) {
                 nextPlayers.clear()
-                val totalWeight = localWeight + weight - shWeightDiff
                 apiData.upcomingPlayers.forEach {
-                    if (it.weight > totalWeight) {
+                    if (it.weight > displayWeight) {
                         nextPlayers.add(it)
                     }
                 }
