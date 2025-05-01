@@ -200,15 +200,13 @@ object FarmingWeightDisplay {
             return
         }
 
-        val lbType = if (isMonthlyLB()) "Monthly " else ""
-
         if (weight == -1.0) {
             if (!isLoadingWeight) {
                 val localProfile = HypixelData.profileName
 
                 isLoadingWeight = true
                 if (display.isEmpty()) {
-                    display = listOf(RenderableString("§6${lbType}Farming Weight§7: §eLoading.."))
+                    display = listOf(RenderableString("§6${lbName()}§7: §eLoading.."))
                 }
                 SkyHanniMod.coroutineScope.launch {
                     loadWeight(localProfile)
@@ -226,7 +224,7 @@ object FarmingWeightDisplay {
         val list = mutableListOf<Renderable>()
         list.add(
             Renderable.clickable(
-                "§6${lbType}Farming Weight§7: $weight$leaderboard",
+                "§6${lbName()}§7: $weight$leaderboard",
                 tips = listOf("§eClick to open your Farming Profile."),
                 onLeftClick = { openWebsite(LorenzUtils.getPlayerName()) },
             ),
@@ -314,8 +312,7 @@ object FarmingWeightDisplay {
 
         if (weightUntilOvertake < 0) {
             if (weightPerSecond > 0) {
-                val lbType = if (isMonthlyLB()) "Monthly " else ""
-                farmingChatMessage("You passed §b$nextName §ein the §6${lbType}Farming Weight §eLeaderboard!")
+                farmingChatMessage("You passed §b$nextName §ein the §6${lbName()} §eLeaderboard!")
             }
 
             // Lower leaderboard position
@@ -468,13 +465,14 @@ object FarmingWeightDisplay {
     }
 
     private fun showLbChange(direction: String, oldPosition: Int) {
-        val lbType = if (isMonthlyLB()) "Monthly " else ""
         farmingChatMessage(
             "§7Since your last visit to the §aGarden§7, " +
-                "you have $direction §7on the §d${lbType}Farming Leaderboard§7. " +
+                "you have $direction §7on the §d${lbName()} Leaderboard§7. " +
                 "§7(§e#${oldPosition.addSeparators()} §7-> §e#${leaderboardPosition.addSeparators()}§7)",
         )
     }
+
+    private fun lbName() = "${if (isMonthlyLB()) "Monthly " else ""}Farming Weight"
 
     private fun loadLeaderboardPosition(): Int {
         val uuid = LorenzUtils.getPlayerUuid()
