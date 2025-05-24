@@ -648,7 +648,7 @@ object ItemUtils {
         .replace("Anniversary Balloon Hat", "Anniv Balloon Hat")
         .replace("An Extremely Difficult Item For You To Find", "Hard To Find Item")
         .replace("Enderman Cortex Rewriter", "Ender Cort")
-        .replace("Pocket Espresso Machine", "Pocket Esp Machine")
+        .replace("Pocket Espresso Machine", "Espresso Machine")
         .replace(" DIAMOND", " Dia")
         .replace(" BRONZE", " Bronze")
         .replace(" GOLD", " Gold")
