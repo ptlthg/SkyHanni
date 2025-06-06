@@ -25,7 +25,7 @@ import at.hannibal2.skyhanni.skyhannimodule.SkyHanniModule
 import at.hannibal2.skyhanni.test.command.ErrorManager
 //#if TODO
 import at.hannibal2.skyhanni.utils.InventoryUtils
-import at.hannibal2.skyhanni.utils.MinecraftConsoleFilter.Companion.initLogging
+import at.hannibal2.skyhanni.utils.MinecraftConsoleFilter
 //#endif
 import at.hannibal2.skyhanni.utils.VersionConstants
 import at.hannibal2.skyhanni.utils.compat.MinecraftCompat
@@ -65,7 +65,7 @@ object SkyHanniMod {
         configManager = ConfigManager()
         configManager.firstLoad()
         //#if TODO
-        initLogging()
+        MinecraftConsoleFilter.initLogging()
         //#endif
         Runtime.getRuntime().addShutdownHook(
             Thread { configManager.saveConfig(ConfigFileType.FEATURES, "shutdown-hook") },
