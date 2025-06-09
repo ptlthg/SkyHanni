@@ -28,7 +28,10 @@ class PestWaypointConfig {
     var drawLine: Boolean = true
 
     @Expose
-    @ConfigOption(name = "Differentiate Plot Middle", desc = "Distinguish pest guesses that point to the middle of the plot")
+    @ConfigOption(
+        name = "Differentiate Plot Middle",
+        desc = "Distinguish pest guesses that point to the middle of the plot from actual pest locations.",
+    )
     @ConfigEditorBoolean
     var differentiatePlotMiddle: Boolean = true
 
