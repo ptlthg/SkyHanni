@@ -36,8 +36,6 @@ import at.hannibal2.skyhanni.utils.chat.TextHelper.asComponent
 import at.hannibal2.skyhanni.utils.chat.TextHelper.send
 import at.hannibal2.skyhanni.utils.navigation.NavigationUtils
 import at.hannibal2.skyhanni.utils.repopatterns.RepoPattern
-import kotlin.collections.component1
-import kotlin.collections.component2
 
 @Suppress("MemberVisibilityCanBePrivate")
 @SkyHanniModule
@@ -233,6 +231,7 @@ object FastFairySoulsPathfinder {
     private var calculatingStart = SimpleTimeMark.farPast()
 
     private fun reload() {
+        val currentIsland = SkyBlockUtils.currentIsland
         val graph = IslandGraphs.currentIslandGraph ?: run {
             data = createEmptyData().also {
                 it.debugState = "island graph is empty"
@@ -269,7 +268,10 @@ object FastFairySoulsPathfinder {
             "§e[SkyHanni] Calculated Fairy Soul route in §b${duration.format(showMilliSeconds = true)}".asComponent()
                 .send(calculatingMessageId)
             calculating = false
-            setData(foundSouls, allSouls, route)
+            // TODO: fix the root issue of all changes being ignored while calculating (e.g. island change without this check or commands)
+            if (currentIsland == SkyBlockUtils.currentIsland) { // Only set data if the island has not changed during calculation
+                setData(foundSouls, allSouls, route)
+            }
         }
     }
 
@@ -277,14 +279,15 @@ object FastFairySoulsPathfinder {
         foundSouls: MutableSet<LorenzVec>,
         allSouls: List<GraphNode>,
         route: MutableList<LorenzVec>,
-    ): Data = Data(
-        found = foundSouls.size,
-        total = allSouls.size,
-        route,
-        allSouls = allSouls.map { it.position }.toSet(),
-    ).also {
-        it.pathToNext()
-        this.data = it
+    ) {
+        this.data = Data(
+            found = foundSouls.size,
+            total = allSouls.size,
+            route,
+            allSouls = allSouls.map { it.position }.toSet(),
+        ).also {
+            it.pathToNext()
+        }
     }
 
     @HandleEvent
@@ -346,21 +349,33 @@ object FastFairySoulsPathfinder {
             category = CommandCategory.USERS_RESET
             callback { onFoundAllCommand() }
         }
+        event.register("shsoulsreloadpath") {
+            description = "Reload the Fairy Souls pathfinder."
+            category = CommandCategory.DEVELOPER_TEST
+            callback { onReloadPathCommand() }
+        }
     }
 
     private fun onResetCommand() {
         if (isDisabledCommand()) return
         resetFoundOnCurrentIsland()
-        ChatUtils.chat("Reset found Fairy Souls on ${SkyBlockUtils.currentIsland.displayName}.")
         reload()
+        ChatUtils.chat("Reset found Fairy Souls on ${SkyBlockUtils.currentIsland.displayName}.")
     }
 
     private fun onFoundAllCommand() {
         if (isDisabledCommand()) return
         val island = SkyBlockUtils.currentIsland
-        ChatUtils.chat("Marked all Fairy Souls as found on ${island.displayName}.")
         data?.allFound("manually set all souls in $island as found via command")
         reload()
+        ChatUtils.chat("Marked all Fairy Souls as found on ${island.displayName}.")
+    }
+
+    private fun onReloadPathCommand() {
+        if (isDisabledCommand()) return
+        data = null
+        reload()
+        ChatUtils.chat("Reloaded Fairy Souls pathfinder.")
     }
 
     private fun isDisabledCommand(): Boolean {
