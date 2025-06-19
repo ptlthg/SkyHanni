@@ -4,15 +4,13 @@ import at.hannibal2.skyhanni.config.core.config.Position
 import at.hannibal2.skyhanni.data.GuiEditManager
 import at.hannibal2.skyhanni.data.GuiEditManager.getAbsX
 import at.hannibal2.skyhanni.data.GuiEditManager.getAbsY
-//#if TODO
 import at.hannibal2.skyhanni.data.model.Graph
-//#endif
 import at.hannibal2.skyhanni.events.GuiContainerEvent
 import at.hannibal2.skyhanni.events.GuiRenderItemEvent
 import at.hannibal2.skyhanni.events.RenderGuiItemOverlayEvent
 import at.hannibal2.skyhanni.events.minecraft.SkyHanniRenderWorldEvent
-//#if TODO
 import at.hannibal2.skyhanni.features.misc.PatcherFixes
+//#if TODO
 import at.hannibal2.skyhanni.features.misc.RoundedRectangleOutlineShader
 import at.hannibal2.skyhanni.features.misc.RoundedRectangleShader
 import at.hannibal2.skyhanni.features.misc.RoundedTextureShader
@@ -111,7 +109,6 @@ object RenderUtils {
         }
     //#endif
 
-    //#if TODO
     fun Slot.highlight(color: LorenzColor) {
         highlight(color.toColor())
     }
@@ -138,7 +135,12 @@ object RenderUtils {
         GlStateManager.disableDepth()
         DrawContextUtils.pushMatrix()
         // TODO don't use z
-        DrawContextUtils.translate(0f, 0f, 110 + Minecraft.getMinecraft().renderItem.zLevel)
+        //#if TODO
+        val zLevel = Minecraft.getMinecraft().renderItem.zLevel
+        //#else
+        //$$ val zLevel = 50f
+        //#endif
+        DrawContextUtils.translate(0f, 0f, 110 + zLevel)
         GuiRenderUtils.drawRect(x, y, x + 16, y + 16, color.rgb)
         DrawContextUtils.popMatrix()
         GlStateManager.enableDepth()
@@ -165,7 +167,12 @@ object RenderUtils {
         GlStateManager.disableLighting()
         GlStateManager.disableDepth()
         DrawContextUtils.pushMatrix()
-        DrawContextUtils.translate(0f, 0f, 110 + Minecraft.getMinecraft().renderItem.zLevel)
+        //#if TODO
+        val zLevel = Minecraft.getMinecraft().renderItem.zLevel
+        //#else
+        //$$ val zLevel = 50f
+        //#endif
+        DrawContextUtils.translate(0f, 0f, 110 + zLevel)
         GuiRenderUtils.drawRect(x, y, x + 1, y + 16, color.rgb)
         GuiRenderUtils.drawRect(x, y, x + 16, y + 1, color.rgb)
         GuiRenderUtils.drawRect(x, y + 15, x + 16, y + 16, color.rgb)
@@ -196,10 +203,13 @@ object RenderUtils {
     ) {
         _drawColor(location, color, beacon, alpha, seeThroughBlocks)
     }
+    //#if TODO
 
     @Deprecated("Use WorldRenderUtils' getViewerPos instead", ReplaceWith("WorldRenderUtils.getViewerPos(partialTicks)"))
     fun getViewerPos(partialTicks: Float) =
         Minecraft.getMinecraft().renderViewEntity?.let { exactLocation(it, partialTicks) } ?: LorenzVec()
+    //#endif
+
 
     @Deprecated("Use WorldRenderUtils' expandBlock instead")
     fun AxisAlignedBB.expandBlock(n: Int = 1) = expand(LorenzVec.expandVector * n)
@@ -244,7 +254,6 @@ object RenderUtils {
     fun interpolate(currentValue: Double, lastValue: Double, multiplier: Double): Double {
         return lastValue + (currentValue - lastValue) * multiplier
     }
-    //#endif
 
     fun Position.transform(): Pair<Int, Int> {
         DrawContextUtils.translate(getAbsX().toFloat(), getAbsY().toFloat(), 0F)
@@ -473,7 +482,6 @@ object RenderUtils {
         _drawWireframeBoundingBox(aabb, color)
     }
 
-    //#if TODO
     @Deprecated("Use WorldRenderUtils' draw3DPathWithWaypoint instead")
     fun SkyHanniRenderWorldEvent.draw3DPathWithWaypoint(
         path: Graph,
@@ -501,7 +509,6 @@ object RenderUtils {
             markLastBlock,
         )
     }
-    //#endif
 
     @Deprecated("Use WorldRenderUtils' drawFilledBoundingBox instead")
     fun SkyHanniRenderWorldEvent.drawFilledBoundingBox(
@@ -762,7 +769,5 @@ object RenderUtils {
         if (colorBuffer.limit() < 4) return 1f
         return colorBuffer.get(3)
     }
-
-    fun translate(vec: LorenzVec) = GlStateManager.translate(vec.x, vec.y, vec.z)
     //#endif
 }

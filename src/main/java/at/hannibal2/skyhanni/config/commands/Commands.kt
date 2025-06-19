@@ -6,7 +6,6 @@ import at.hannibal2.skyhanni.api.event.HandleEvent
 import at.hannibal2.skyhanni.config.ConfigFileType
 import at.hannibal2.skyhanni.data.SackApi
 import at.hannibal2.skyhanni.data.ScoreboardData
-import at.hannibal2.skyhanni.data.TrackerManager
 import at.hannibal2.skyhanni.data.bazaar.HypixelBazaarFetcher
 import at.hannibal2.skyhanni.features.bingo.card.BingoCardDisplay
 import at.hannibal2.skyhanni.features.bingo.card.nextstephelper.BingoNextStepHelper
@@ -39,7 +38,6 @@ import at.hannibal2.skyhanni.test.SkyHanniConfigSearchResetCommand
 import at.hannibal2.skyhanni.test.SkyHanniDebugsAndTests
 import at.hannibal2.skyhanni.test.TestBingo
 import at.hannibal2.skyhanni.test.WorldEdit
-import at.hannibal2.skyhanni.test.command.CopyItemCommand
 import at.hannibal2.skyhanni.test.command.TestChatCommand
 import at.hannibal2.skyhanni.utils.ExtendedChatColor
 import at.hannibal2.skyhanni.utils.ItemPriceUtils
@@ -234,11 +232,6 @@ object Commands {
             category = CommandCategory.USERS_BUG_FIX
             callback { HypixelBazaarFetcher.fetchNow() }
         }
-        event.register("shedittracker") {
-            description = "Changes the tracked item amount for Diana, Fishing, Pest, Excavator, and Slayer Item Trackers."
-            category = CommandCategory.USERS_BUG_FIX
-            callback { TrackerManager.commandEditTracker(it) }
-        }
     }
 
     private fun devDebug(event: CommandRegistrationEvent) {
@@ -324,11 +317,6 @@ object Commands {
             description = "Copies the player location as LorenzVec format to the clipboard"
             category = CommandCategory.DEVELOPER_DEBUG
             callback { SkyHanniDebugsAndTests.copyLocation(it) }
-        }
-        event.register("shcopyitem") {
-            description = "Copies information about the item in hand to the clipboard"
-            category = CommandCategory.DEVELOPER_DEBUG
-            callback { CopyItemCommand.command() }
         }
     }
 

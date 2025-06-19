@@ -8,10 +8,8 @@ import at.hannibal2.skyhanni.data.IslandType
 import at.hannibal2.skyhanni.data.ItemAddManager
 import at.hannibal2.skyhanni.events.GuiRenderEvent
 import at.hannibal2.skyhanni.events.ItemAddEvent
-//#if TODO
 import at.hannibal2.skyhanni.features.rift.RiftApi
 import at.hannibal2.skyhanni.features.rift.RiftApi.motesNpcPrice
-//#endif
 import at.hannibal2.skyhanni.skyhannimodule.SkyHanniModule
 import at.hannibal2.skyhanni.utils.InventoryUtils
 import at.hannibal2.skyhanni.utils.ItemUtils
@@ -48,11 +46,7 @@ object TimiteTracker {
         override fun getCoinDescription(item: TrackedItem): List<String> = emptyList()
 
         override fun getCustomPricePer(internalName: NeuInternalName): Double {
-            //#if TODO
             return internalName.getItemStack().motesNpcPrice() ?: 0.0
-            //#else
-            //$$ return 0.0
-            //#endif
         }
 
         fun getTime(): Int = this.items[TIMITE]?.let {
@@ -126,9 +120,7 @@ object TimiteTracker {
     }
 
     private fun isEnabled() =
-        //#if TODO
         RiftApi.inMountainTop() &&
-            //#endif
             config.tracker &&
             (!config.onlyShowWhileHolding || InventoryUtils.itemInHandId in timiteItems)
 
