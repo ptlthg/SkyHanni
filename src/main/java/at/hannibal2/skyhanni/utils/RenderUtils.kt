@@ -87,7 +87,9 @@ object RenderUtils {
     //#if TODO
     private val matrixBuffer: FloatBuffer = GLAllocation.createDirectFloatBuffer(16)
     private val colorBuffer: FloatBuffer = GLAllocation.createDirectFloatBuffer(16)
+    //#endif
 
+    //#if MC < 1.8.9
     /**
      * Used for some debugging purposes.
      */
@@ -107,7 +109,9 @@ object RenderUtils {
 
             Triple(xTranslate, yTranslate, zTranslate)
         }
+    //#endif
 
+    //#if TODO
     fun Slot.highlight(color: LorenzColor) {
         highlight(color.toColor())
     }
