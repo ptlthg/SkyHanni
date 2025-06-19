@@ -39,9 +39,9 @@ import at.hannibal2.skyhanni.utils.render.WorldRenderUtils._drawString
 import at.hannibal2.skyhanni.utils.render.WorldRenderUtils._drawWaypointFilled
 import at.hannibal2.skyhanni.utils.render.WorldRenderUtils._drawWireframeBoundingBox
 import at.hannibal2.skyhanni.utils.render.WorldRenderUtils._outlineTopFace
-//#if TODO
 import at.hannibal2.skyhanni.utils.renderables.Renderable
 import at.hannibal2.skyhanni.utils.renderables.RenderableUtils.renderXAligned
+//#if TODO
 import at.hannibal2.skyhanni.utils.shader.ShaderManager
 //#endif
 import io.github.notenoughupdates.moulconfig.ChromaColour
@@ -292,7 +292,6 @@ object RenderUtils {
         GuiEditManager.add(this, posLabel, longestX, offsetY)
     }
 
-    //#if TODO
     fun Position.renderRenderables(
         renderables: List<Renderable>,
         extraSpace: Int = 0,
@@ -334,6 +333,7 @@ object RenderUtils {
         if (addToGuiManager) GuiEditManager.add(this, posLabel, renderable.width, renderable.height)
     }
 
+    //#if TODO
     @Deprecated("Use WorldRenderUtils' drawCircle instead")
     fun SkyHanniRenderWorldEvent.drawCircle(entity: Entity, rad: Double, color: Color) {
         _drawCircle(entity, rad, color)

@@ -2,15 +2,19 @@ package at.hannibal2.skyhanni.utils.renderables
 
 import at.hannibal2.skyhanni.config.core.config.gui.GuiPositionEditor
 import at.hannibal2.skyhanni.config.features.skillprogress.SkillProgressBarConfig
+//#if TODO
 import at.hannibal2.skyhanni.data.GuiData
 import at.hannibal2.skyhanni.data.HighlightOnHoverSlot
+//#endif
 import at.hannibal2.skyhanni.data.RenderData
 import at.hannibal2.skyhanni.data.ToolTipData
 import at.hannibal2.skyhanni.data.model.TextInput
+//#if TODO
 import at.hannibal2.skyhanni.features.chroma.ChromaShaderManager
 import at.hannibal2.skyhanni.features.chroma.ChromaType
 import at.hannibal2.skyhanni.features.misc.DarkenShader
 import at.hannibal2.skyhanni.mixins.hooks.RenderLivingEntityHelper
+//#endif
 import at.hannibal2.skyhanni.utils.ColorUtils
 import at.hannibal2.skyhanni.utils.ColorUtils.addAlpha
 import at.hannibal2.skyhanni.utils.ColorUtils.darker
@@ -32,20 +36,24 @@ import at.hannibal2.skyhanni.utils.collection.CollectionUtils.sumAllValues
 import at.hannibal2.skyhanni.utils.compat.DrawContextUtils
 import at.hannibal2.skyhanni.utils.compat.EnchantmentsCompat
 import at.hannibal2.skyhanni.utils.compat.getTooltipCompat
+//#if TODO
 import at.hannibal2.skyhanni.utils.guide.GuideGui
-import at.hannibal2.skyhanni.utils.renderables.Renderable.Companion.clickableAndScrollable
-import at.hannibal2.skyhanni.utils.renderables.Renderable.Companion.shouldAllowLink
+//#endif
 import at.hannibal2.skyhanni.utils.renderables.RenderableUtils.renderXAligned
 import at.hannibal2.skyhanni.utils.renderables.RenderableUtils.renderXYAligned
 import at.hannibal2.skyhanni.utils.renderables.RenderableUtils.renderYAligned
 import at.hannibal2.skyhanni.utils.renderables.container.HorizontalContainerRenderable
 import at.hannibal2.skyhanni.utils.renderables.container.VerticalContainerRenderable
+//#if TODO
 import at.hannibal2.skyhanni.utils.shader.ShaderManager
+//#endif
 import io.github.notenoughupdates.moulconfig.gui.GuiScreenElementWrapper
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiIngameMenu
 import net.minecraft.client.gui.inventory.GuiEditSign
+//#if TODO
 import net.minecraft.client.gui.inventory.GuiInventory.drawEntityOnScreen
+//#endif
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -54,6 +62,7 @@ import org.lwjgl.opengl.GL11
 import java.awt.Color
 import kotlin.math.max
 
+// todo 1.21 impl needed
 @Suppress("TooManyFunctions")
 interface Renderable {
 
@@ -113,7 +122,7 @@ interface Renderable {
             onLeftClick,
             bypassChecks,
             highlightsOnHoverSlots = highlightsOnHoverSlots,
-            condition
+            condition,
         )
 
         fun link(
@@ -280,7 +289,9 @@ interface Renderable {
                     if (isHovered(posX, posY)) {
                         if (condition() && shouldAllowLink(true, bypassChecks)) {
                             onHover.invoke()
+                            //#if TODO
                             HighlightOnHoverSlot.currentSlots[pair] = highlightsOnHoverSlots
+                            //#endif
                             DrawContextUtils.pushMatrix()
                             DrawContextUtils.translate(0F, 0F, 400F)
 
@@ -294,7 +305,9 @@ interface Renderable {
                             DrawContextUtils.popMatrix()
                         }
                     } else {
+                        //#if TODO
                         HighlightOnHoverSlot.currentSlots.remove(pair)
+                        //#endif
                     }
                 }
             }
@@ -310,8 +323,15 @@ interface Renderable {
 
             val inMenu = Minecraft.getMinecraft().currentScreen !is GuiIngameMenu
             val isGuiPositionEditor = guiScreen !is GuiPositionEditor
-            val isNotInSignAndOnSlot = if (guiScreen !is GuiEditSign && guiScreen !is GuideGui<*>) {
-                ToolTipData.lastSlot == null || GuiData.preDrawEventCancelled
+            val isNotInSignAndOnSlot = if (guiScreen !is GuiEditSign
+                //#if TODO
+                && guiScreen !is GuideGui<*>
+            //#endif
+            ) {
+                ToolTipData.lastSlot == null
+                    //#if TODO
+                    || GuiData.preDrawEventCancelled
+                //#endif
             } else true
             val isConfigScreen = guiScreen !is GuiScreenElementWrapper
 
@@ -391,11 +411,15 @@ interface Renderable {
                 isHovered = if (isHovered(posX, posY) && condition() && shouldAllowLink(true, bypassChecks)) {
                     onHover()
                     hovered.render(posX, posY)
+                    //#if TODO
                     HighlightOnHoverSlot.currentSlots[pair] = highlightsOnHoverSlots
+                    //#endif
                     true
                 } else {
                     unHovered.render(posX, posY)
+                    //#if TODO
                     HighlightOnHoverSlot.currentSlots.remove(pair)
+                    //#endif
                     false
                 }
             }
@@ -468,6 +492,7 @@ interface Renderable {
             }
         }
 
+        //#if TODO
         fun Renderable.darken(amount: Float = 1f) = object : Renderable {
             override val width = this@darken.width
             override val height = this@darken.height
@@ -481,6 +506,7 @@ interface Renderable {
                 ShaderManager.disableShader()
             }
         }
+        //#endif
 
         @Deprecated(
             "Use RenderableString instead",
@@ -528,7 +554,7 @@ interface Renderable {
             override val horizontalAlign = HorizontalAlignment.LEFT
             override val verticalAlign = VerticalAlignment.TOP
 
-            override fun render(posX: Int, posY: Int) { }
+            override fun render(posX: Int, posY: Int) {}
         }
 
         fun searchableTable(
@@ -716,9 +742,8 @@ interface Renderable {
                 if (isHovered(posX, posY) && condition() && shouldAllowLink(true, bypassChecks)) {
                     onHover(textInput)
                     textInput.makeActive()
-                    textInput.handle()
                     val yOff: Int = if (shouldRenderTopElseBottom) 0 else content.height + ySpacing
-                    if (isBoxHovered(posX, width, posY + yOff, textBoxHeight) && (-99).isKeyClicked()) {
+                    if (isBoxHovered(posX, width, posY + yOff, textBoxHeight) && RIGHT_MOUSE.isKeyClicked()) {
                         textInput.clear()
                     }
                 } else {
@@ -741,6 +766,7 @@ interface Renderable {
 
         }
 
+        //#if TODO
         fun progressBar(
             percent: Double,
             startColor: Color = Color(255, 0, 0),
@@ -869,6 +895,7 @@ interface Renderable {
                 DrawContextUtils.translate(-(xOffset - posX).toFloat(), 0f, 0f)
             }
         }
+        //#endif
 
         fun fixedSizeColumn(
             content: Renderable,
@@ -1379,6 +1406,7 @@ interface Renderable {
             }
         }
 
+        //#if TODO
         fun drawInsideRoundedRect(
             input: Renderable,
             color: Color,
@@ -1572,5 +1600,6 @@ interface Renderable {
                 DrawContextUtils.translate(0f, 0f, -100f)
             }
         }
+        //#endif
     }
 }
