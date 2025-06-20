@@ -44,6 +44,10 @@ object BingoCardDisplay {
     private val config get() = SkyHanniMod.feature.event.bingo.bingoCard
     private var displayMode = 0
 
+    private fun command() {
+        reload()
+    }
+
     private fun reload() {
         BingoApi.bingoGoals.clear()
     }
