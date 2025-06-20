@@ -203,16 +203,16 @@ object RenderUtils {
     ) {
         _drawColor(location, color, beacon, alpha, seeThroughBlocks)
     }
-    //#if TODO
 
+    //#if TODO
     @Deprecated("Use WorldRenderUtils' getViewerPos instead", ReplaceWith("WorldRenderUtils.getViewerPos(partialTicks)"))
     fun getViewerPos(partialTicks: Float) =
         Minecraft.getMinecraft().renderViewEntity?.let { exactLocation(it, partialTicks) } ?: LorenzVec()
     //#endif
 
-
     @Deprecated("Use WorldRenderUtils' expandBlock instead")
     fun AxisAlignedBB.expandBlock(n: Int = 1) = expand(LorenzVec.expandVector * n)
+
     @Deprecated("Use WorldRenderUtils' inflateBlock instead")
     fun AxisAlignedBB.inflateBlock(n: Int = 1) = expand(LorenzVec.expandVector * -n)
 
