@@ -118,7 +118,6 @@ class ScrollValue {
 
     fun isMouseEventValid(): Boolean {
         val mouseEvent = MouseCompat.getEventNanoseconds()
-        println(mouseEvent)
         val mouseEventsValid = mouseEvent - mouseEventTime > 20L
         mouseEventTime = mouseEvent
         return mouseEventsValid
