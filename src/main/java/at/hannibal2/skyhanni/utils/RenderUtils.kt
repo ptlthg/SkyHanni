@@ -382,8 +382,9 @@ object RenderUtils {
         color: Color,
         location: LorenzVec,
         radius: Float,
+        segments: Int = 32,
     ) {
-        _drawSphereInWorld(color, location.x, location.y, location.z, radius)
+        _drawSphereInWorld(color, location.x, location.y, location.z, radius, segments)
     }
 
     @Deprecated("Use WorldRenderUtils' drawSphereInWorld instead")
@@ -393,8 +394,9 @@ object RenderUtils {
         y: Double,
         z: Double,
         radius: Float,
+        segments: Int = 32,
     ) {
-        _drawSphereInWorld(color, x, y, z, radius)
+        _drawSphereInWorld(color, x, y, z, radius, segments)
     }
 
     @Deprecated("Use WorldRenderUtils' drawSphereWireframeInWorld instead")
@@ -402,8 +404,9 @@ object RenderUtils {
         color: Color,
         location: LorenzVec,
         radius: Float,
+        segments: Int = 32,
     ) {
-        _drawSphereWireframeInWorld(color, location.x, location.y, location.z, radius)
+        _drawSphereWireframeInWorld(color, location.x, location.y, location.z, radius, segments)
     }
 
     @Deprecated("Use WorldRenderUtils' drawSphereWireframeInWorld instead")
@@ -413,8 +416,9 @@ object RenderUtils {
         y: Double,
         z: Double,
         radius: Float,
+        segments: Int = 32,
     ) {
-        _drawSphereWireframeInWorld(color, x, y, z, radius)
+        _drawSphereWireframeInWorld(color, x, y, z, radius, segments)
     }
 
     @Deprecated("Use WorldRenderUtils' drawDynamicText instead")
@@ -440,9 +444,7 @@ object RenderUtils {
         // TODO cache once per frame
         val player = MinecraftCompat.localPlayer
         val eyeHeight = player.getEyeHeight().toDouble()
-        //#if TODO
         PatcherFixes.onPlayerEyeLine()
-        //#endif
         return exactLocation(player).add(y = eyeHeight)
     }
 
@@ -535,9 +537,9 @@ object RenderUtils {
     @Deprecated("Use WorldRenderUtils' drawHitbox instead")
     fun SkyHanniRenderWorldEvent.drawHitbox(
         boundingBox: AxisAlignedBB,
-        lineWidth: Int,
         color: Color,
-        depth: Boolean,
+        lineWidth: Int = 3,
+        depth: Boolean = true,
     ) {
         _drawHitbox(boundingBox, color, lineWidth, depth)
     }
