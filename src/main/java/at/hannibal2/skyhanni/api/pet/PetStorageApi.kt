@@ -436,9 +436,12 @@ object PetStorageApi {
     @HandleEvent
     fun onDebug(event: DebugDataCollectEvent) {
         fun PetData.formatForDebug() = fauxInternalName.asString() + ":<lvl$level>:" + uuid.toString()
-        event.title("PetStorageApi")
+        event.title("Pet Storage API")
         event.addIrrelevant {
-            val petStorage = petStorage ?: return@addIrrelevant
+            val petStorage = petStorage ?: run {
+                add("petStorage is null")
+                return@addIrrelevant
+            }
             LorenzRarity.entries.reversed().forEach { rarity ->
                 val pets = petStorage.pets.filter { it.rarity == rarity }.takeIfNotEmpty() ?: return@forEach
                 add("pets (${rarity.name}):\n" + pets.joinToString(", ", transform = PetData::formatForDebug))
