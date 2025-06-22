@@ -42,6 +42,9 @@ object HypixelEventApi {
     }
 
     fun sendPacket(packet: ServerboundVersionedPacket) {
-        modApi.sendPacket(packet)
+        try {
+            modApi.sendPacket(packet)
+        } catch (_: Exception) {
+        }
     }
 }

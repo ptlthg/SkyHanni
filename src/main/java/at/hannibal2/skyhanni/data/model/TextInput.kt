@@ -75,7 +75,7 @@ open class TextInput {
 
         fun activate(instance: TextInput) {
             activeInstance = instance
-            //#if TODO
+            //#if MC < 1.21
             timeSinceKeyEvent = Keyboard.getEventNanoseconds()
             //#endif
         }

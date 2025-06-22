@@ -220,13 +220,15 @@ object ErrorManager {
 
         val extraDataString = getExtraDataOrCached(extraData)
         val rawMessage = message.removeColor()
-        errorMessages[randomId] = "```\nSkyHanni ${SkyHanniMod.VERSION}: $rawMessage\n \n$stackTrace\n$extraDataString```"
+        val shVersion = SkyHanniMod.VERSION
+        val mcVersion = PlatformUtils.MC_VERSION
+        errorMessages[randomId] = "```\nSkyHanni $shVersion $mcVersion: $rawMessage\n \n$stackTrace\n$extraDataString```"
         fullErrorMessages[randomId] =
-            "```\nSkyHanni ${SkyHanniMod.VERSION}: $rawMessage\n(full stack trace)\n \n$fullStackTrace\n$extraDataString```"
+            "```\nSkyHanni $shVersion $mcVersion: $rawMessage\n(full stack trace)\n \n$fullStackTrace\n$extraDataString```"
 
         val finalMessage = buildFinalMessage(message) ?: return false
         ChatUtils.clickableChat(
-            "§c[SkyHanni-${SkyHanniMod.VERSION}]: $finalMessage Click here to copy the error into the clipboard.",
+            "§c[SkyHanni-$shVersion]: $finalMessage Click here to copy the error into the clipboard.",
             onClick = { copyError(randomId) },
             "§eClick to copy!",
             prefix = false,
