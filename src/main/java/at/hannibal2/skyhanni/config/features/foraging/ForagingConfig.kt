@@ -21,7 +21,11 @@ class ForagingConfig {
     @ConfigEditorInfoText
     var notice: String = ""
 
-
+    @Expose
+    @ConfigOption(name = "Moonglade Beacon", desc = "Settings for the moonglade beacon.")
+    @OnlyModern
+    @Accordion
+    var moongladeBeacon = MoongladeBeaconConfig()
 
     @Expose
     @ConfigOption(name = "Birries Highlight", desc = "")
