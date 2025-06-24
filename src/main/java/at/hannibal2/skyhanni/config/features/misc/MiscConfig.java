@@ -432,6 +432,14 @@ public class MiscConfig {
     public boolean transparentTooltips = false;
 
     @Expose
+    @ConfigOption(name = "Hide Co-op Member Collections", desc = "Hides specific co-op members from collections.\n" +
+        "§eOpen the Historic Members menu (automatic) or use /shedithiddencoopmembers (manual) to update the list."
+    )
+    @ConfigEditorBoolean
+    @FeatureToggle
+    public boolean hideExCoopMembers = false;
+
+    @Expose
     @ConfigOption(
         name = "Abiphone Hotkey",
         desc = "Answer incoming abiphone calls with a hotkey."
