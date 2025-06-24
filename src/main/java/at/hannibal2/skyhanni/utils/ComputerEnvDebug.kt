@@ -91,6 +91,9 @@ object ComputerEnvDebug {
     }
 
     private fun java(event: DebugDataCollectEvent) {
+        // outdated java 8 is only a mc 1.8.9 thing. in mc 1.21 we have modern java 21 anyway
+        if (!PlatformUtils.IS_LEGACY) return
+
         event.title("Computer Java Version")
         val version = System.getProperty("java.version")
         val pattern = "1\\.8\\.0_(?<update>.*)".toPattern()
