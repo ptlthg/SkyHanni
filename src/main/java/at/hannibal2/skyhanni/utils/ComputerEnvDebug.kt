@@ -30,9 +30,7 @@ object ComputerEnvDebug {
         launcher(event)
         ram(event)
         uptime(event)
-        //#if MC == 1.8.9
         performanceMods(event)
-        //#endif
     }
 
     private fun launcher(event: DebugDataCollectEvent) {
@@ -223,12 +221,12 @@ object ComputerEnvDebug {
 
     private fun getUptime() = ManagementFactory.getRuntimeMXBean().uptime.milliseconds
 
-    //#if MC == 1.8.9
     private fun performanceMods(event: DebugDataCollectEvent) {
         if (PlatformUtils.isDevEnvironment) return
+        event.title("Performance Mods")
+        //#if MC < 1.21
         val hasOptifine = FMLClientHandler.instance().hasOptifine()
         val hasPatcher = Loader.isModLoaded("patcher")
-        event.title("Performance Mods")
         if (!hasOptifine || !hasPatcher) {
             event.addData {
                 add("Optifine is ${if (hasOptifine) "" else "not"} installed")
@@ -246,8 +244,21 @@ object ComputerEnvDebug {
                 add("Optifine and Patcher are installed")
             }
         }
+        //#else
+        //$$ val hasSodium = net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("sodium")
+        //$$ if (!hasSodium) {
+        //$$     event.addData {
+        //$$         add("Sodium is not installed")
+        //$$         add("This mod greatly improve performance")
+        //$$         add("https://modrinth.com/mod/sodium")
+        //$$     }
+        //$$ } else {
+        //$$     event.addIrrelevant {
+        //$$         add("Sodium is installed")
+        //$$     }
+        //$$ }
+        //#endif
     }
-    //#endif
 
     @HandleEvent
     fun onCommandRegistration(event: CommandRegistrationEvent) {
