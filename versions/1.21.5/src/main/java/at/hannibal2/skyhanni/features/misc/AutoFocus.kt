@@ -20,7 +20,7 @@ object AutoFocus {
         if (dirty) return
         dirty = true
 
-        if (!PlatformUtils.IS_LEGACY && PlatformUtils.isDevEnvironment) {
+        if (PlatformUtils.isDevEnvironment) {
             val handle: Long = MinecraftClient.getInstance().window.handle
             GLFW.glfwFocusWindow(handle)
         }
