@@ -15,7 +15,8 @@ class ForagingConfig {
 
     @ConfigOption(
         name = "§cNotice",
-        desc = "To see all foraging features please launch the game on a modern version of Minecraft with SkyHanni installed.",
+        desc = "To see all foraging features, please launch the game on a modern version of Minecraft with SkyHanni installed.\n" +
+            "§eJoin the SkyHanni discord for a guide on how to migrate the config.",
     )
     @OnlyLegacy
     @ConfigEditorInfoText
