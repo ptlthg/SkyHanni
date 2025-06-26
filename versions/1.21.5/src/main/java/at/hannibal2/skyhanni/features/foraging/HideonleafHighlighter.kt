@@ -12,13 +12,16 @@ import at.hannibal2.skyhanni.utils.LocationUtils.distanceToPlayer
 @SkyHanniModule
 object HideonleafHighlighter {
 
-    val config get() = SkyHanniMod.feature.foraging.hideonleafHighlight
+    private val config get() = SkyHanniMod.feature.foraging.hideonleafHighlight
 
     @HandleEvent(onlyOnIsland = IslandType.GALATEA)
     fun onMob(event: MobEvent.Spawn.SkyblockMob) {
-        if (event.mob.name != "Hideonleaf") return
-        RenderLivingEntityHelper.setEntityColor(event.mob.baseEntity, config.color.toColor()) { isEnabled() && event.mob.baseEntity.distanceToPlayer() < 20 }
+        val mob = event.mob
+        if (mob.name != "Hideonleaf") return
+        RenderLivingEntityHelper.setEntityColor(mob.baseEntity, config.color.toColor()) {
+            isEnabled() && mob.distanceToPlayer() < 20
+        }
     }
 
-    fun isEnabled() = config.enabled
+    private fun isEnabled() = config.enabled
 }
