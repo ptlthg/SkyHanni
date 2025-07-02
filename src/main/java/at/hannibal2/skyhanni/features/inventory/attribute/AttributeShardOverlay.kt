@@ -141,7 +141,7 @@ object AttributeShardOverlay {
         addRenderableButton<AttributeShardSorting>(
             label = "Sorted By",
             current = config.displaySortingMethod,
-            getName = { "§e${it.displayName}" },
+            getName = { it.displayName },
             onChange = {
                 config.displaySortingMethod = it
                 reconstructDisplay()
@@ -151,7 +151,7 @@ object AttributeShardOverlay {
         addRenderableButton<AttributeShardPriceSource>(
             label = "Price Source",
             current = config.overlayPriceSource,
-            getName = { "§e${it.displayName}" },
+            getName = { it.displayName },
             onChange = {
                 config.overlayPriceSource = it
                 reconstructDisplay()
