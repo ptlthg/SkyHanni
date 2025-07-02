@@ -27,6 +27,7 @@ import at.hannibal2.skyhanni.utils.WebhookUtils
 import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 // This module sends status updates (like stats and buffs) to a user-defined Discord webhook.
 // Only the data selected by the user in the config is sent.
@@ -68,7 +69,7 @@ object FarmingStatusTracker {
     // Sends embed periodically
     @HandleEvent(SecondPassedEvent::class)
     fun onSecondPassed() {
-        if (!isEnabled()) return
+        if (!config.enabled) return
         if (lastNotification.passedSince() < config.webhook.interval.minutes) return
 
         status = when {
@@ -81,7 +82,12 @@ object FarmingStatusTracker {
 
         val success = prepareAndSendEmbed(status)
 
-        if (success) lastNotification = SimpleTimeMark.now() else ChatUtils.chat("§cCouldn't send embed (Farming Status Tracker).")
+        lastNotification = if (success) {
+            SimpleTimeMark.now()
+        } else {
+            ChatUtils.chat("§cCouldn't send embed (Farming Status Tracker).")
+            SimpleTimeMark.now() + 10.seconds
+        }
     }
 
     // Prepares and sends the embed to the configured webhook
@@ -228,5 +234,4 @@ object FarmingStatusTracker {
 
     fun InformationType.isSelected() = config.embed.information.contains(this)
 
-    fun isEnabled() = config.enabled
 }
