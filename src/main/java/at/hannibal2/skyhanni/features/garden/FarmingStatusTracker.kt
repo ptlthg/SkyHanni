@@ -135,7 +135,8 @@ object FarmingStatusTracker {
         InformationType.STRENGTH -> SkyblockStat.STRENGTH.lastKnownInt()
 
         InformationType.PET -> CurrentPetApi.currentPet?.let { pet ->
-            "${pet.cleanName} ${petEmojis[pet.cleanName]}"
+            val emoji = petEmojis[pet.cleanName]?.let { " $it" } ?: ""
+            "${pet.cleanName} $emoji"
         }
 
         InformationType.COOKIE_BUFF -> cookieBuffTime.formatTime()
