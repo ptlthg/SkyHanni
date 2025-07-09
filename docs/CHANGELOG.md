@@ -42,6 +42,11 @@
     + Coins per XP and XP per Bit.
 + Added Disabled Attributes Highlighter. - Thunderblade73 (https://github.com/hannibal002/SkyHanni/pull/4193)
     + Highlight disabled attributes in /attributemenu.
++ Added Chronomatron and Ultrasequencer helpers. - Daveed (https://github.com/hannibal002/SkyHanni/pull/4081)
+    + Options to highlight next clicks and prevent misclicks.
++ Added option to keep clicked items visible within Superpairs. - Daveed (https://github.com/hannibal002/SkyHanni/pull/4081)
++ Added Coral Fish Helper. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4243)
+    + Shows missing fishes for the NPC, sorted by price.
 
 #### Foraging
 
@@ -70,6 +75,9 @@
 + Added Attribute Tier as Stack Size. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4203)
     + Displays Attribute Shard tier as stack size in Attribute Menu.
 + Added Invisibug Highlight. - Helium9 (https://github.com/hannibal002/SkyHanni/pull/4195)
++ Added Hunting Box Value. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4251)
+    + Shows the value of the shards.
++ Added profit per Agatha Coupon in Agatha's Shop. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4250)
 
 #### Misc
 
@@ -101,6 +109,7 @@
 
 + Added autocomplete for the `Shorten /warp` option. - ksndq (https://github.com/hannibal002/SkyHanni/pull/3856)
 + Added Self-Trigger option for party commands !allinvite, !warp, !ping and !tps. - Fazfoxy (https://github.com/hannibal002/SkyHanni/pull/4001)
++ Added config option for self-triggered party commands. - yhtez (https://github.com/hannibal002/SkyHanni/pull/4311)
 
 #### GUIs
 
@@ -184,6 +193,7 @@
 + Changed Account Upgrade Reminder to warp directly to Elizabeth. - Luna (https://github.com/hannibal002/SkyHanni/pull/4224)
 + Made Hide Fire and Blaze Particles work on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4209)
 + Updated Visual Words for supporting custom-font mods. - bloxigus (https://github.com/hannibal002/SkyHanni/pull/4210)
++ Added 5 SkyHanni User Luck for 1.21 players. - nopo (https://github.com/hannibal002/SkyHanni/pull/4285)
 
 ### Fixes
 
@@ -214,6 +224,8 @@
 + Fixed Custom Scoreboard error in 1.8 Garden. - j10a1n15 (https://github.com/hannibal002/SkyHanni/pull/4255)
 + Fixed incorrect speed warning when farming on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4248)
 + Fixed SkyHanni failing to detect pumpkin farming on 1.21. - nopo (https://github.com/hannibal002/SkyHanni/pull/4228)
++ Fixed Garden Level Display on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4301)
++ Fixed Medal Icons not showing in Jacob’s Contest inventory. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4295)
 
 #### Chat
 
@@ -260,6 +272,8 @@
 + Fixed mouse button wardrobe keybinds on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4279)
 + Fixed some Item Trackers sometimes not showing hidden items anymore. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/4287)
 + Fixed wrongly named option in Attribute Shard Overlay. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4267)
++ Fixed Bits per Booster Cookie tooltip not showing on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4301)
++ Fixed Farming Tooltip Tweaks on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4301)
 
 #### Mining
 
@@ -269,12 +283,15 @@
 + Fixed rare error in Powder Chest Timer. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/4105)
 + Fixed Powder Chest Timer error. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/4126)
 + Fixed some HOTM perks you haven't unlocked being incorrectly highlighted. - Luna (https://github.com/hannibal002/SkyHanni/pull/4274)
++ Fixed Custom Scoreboard error in the Mines. - j10a1n15 (https://github.com/hannibal002/SkyHanni/pull/4303)
 
 #### Fishing
 
 + Fixed other particles interfering with hotspot guesses. - bloxigus (https://github.com/hannibal002/SkyHanni/pull/3913)
 + Fixed Fishing Profit Tracker's times-fished count. - Chissl (https://github.com/hannibal002/SkyHanni/pull/3980)
 + Fixed Sea Creature Highlight. - nopo (https://github.com/hannibal002/SkyHanni/pull/4185)
++ Fixed Fishing Item Name showing as Air on 1.21. - nopo (https://github.com/hannibal002/SkyHanni/pull/4296)
++ Fixed Odger Total Caught Tooltip not showing on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4301)
 
 #### Hoppity
 
@@ -393,6 +410,10 @@
 + Fixed some damage indicator issues on 1.21. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4273)
 + Removed non-functional "Config Button" option on Minecraft 1.21. - Luna (https://github.com/hannibal002/SkyHanni/pull/4269)
     + Use Mod Menu instead.
++ Fixed crashes caused by keybind migration. - nopo (https://github.com/hannibal002/SkyHanni/pull/4297)
+    + Invalid keybinds now reset.
++ Fixed Missing Enchanted Book Message showing wrong User Luck amount. - nopo (https://github.com/hannibal002/SkyHanni/pull/4285)
++ Fixed self-triggered party commands incorrectly checking friendship status when trust level was set. - yhtez (https://github.com/hannibal002/SkyHanni/pull/4311)
 
 ### Technical Details
 
@@ -551,6 +572,17 @@
     + Offending rule name will now be included in error line.
 + Updated buildscript to support additional versions more easily. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4229)
 + Updated moulconfig to version 4.0.0. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4276)
++ Added automatic uploading to Modrinth. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4266)
++ Added Packet mappings for PacketTest. - Thunderblade73 (https://github.com/hannibal002/SkyHanni/pull/4242)
++ Added Retry Mechanism for Gradle tasks in GitHub workflows. - Daveed (https://github.com/hannibal002/SkyHanni/pull/4292)
++ Added User Luck Event for developers to add new sources. - nopo (https://github.com/hannibal002/SkyHanni/pull/4285)
++ Converted dependency-check GitHub workflow to script. - Daveed (https://github.com/hannibal002/SkyHanni/pull/4293)
+    + Runs correctly when dependent PRs close.
++ Disabled IntelliJ’s MC Version/Legacy Prediction to avoid incorrect warnings and suggestions. - hannibal2 (https://github.com/hannibal002/SkyHanni/pull/4302)
++ Overhauled ResettableStorageSet. - Daveed (https://github.com/hannibal002/SkyHanni/pull/4244)
+    + Can now reset Mutable Collections.
+    + Added JUnit Test.
++ Removed Z Translation in ChatHistoryGui. - CalMWolfs (https://github.com/hannibal002/SkyHanni/pull/4237)
 
 ### Removed Features
 
