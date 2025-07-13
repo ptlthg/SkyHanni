@@ -61,7 +61,7 @@ object GardenNextJacobContest {
     private const val CLOSE_TO_NEW_YEAR_TEXT = "§7Close to new SB year!"
     private const val MAX_CONTESTS_PER_YEAR = 124
     private val profileStorage get() = SkyHanniMod.feature.storage
-    private val config get() = GardenApi.config.nextJacobContests
+    private val config get() = GardenApi.config.jacobContest.nextContest
     private val patternGroup = RepoPattern.group("garden.nextcontest")
     private val calendarDetector by lazy { InventoryDetector(monthPattern) }
     private val haveAllContests get() = knownContests.size == MAX_CONTESTS_PER_YEAR
