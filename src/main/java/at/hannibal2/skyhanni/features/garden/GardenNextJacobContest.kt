@@ -21,7 +21,6 @@ import at.hannibal2.skyhanni.features.garden.contest.EliteDevApi
 import at.hannibal2.skyhanni.skyhannimodule.SkyHanniModule
 import at.hannibal2.skyhanni.utils.ChatUtils
 import at.hannibal2.skyhanni.utils.ColorUtils.toColor
-import at.hannibal2.skyhanni.utils.ConfigUtils
 import at.hannibal2.skyhanni.utils.DialogUtils
 import at.hannibal2.skyhanni.utils.InventoryDetector
 import at.hannibal2.skyhanni.utils.ItemUtils.getLore
@@ -500,9 +499,6 @@ object GardenNextJacobContest {
         event.move(3, "garden.nextJacobContestWarnPopup", "garden.nextJacobContests.warnPopup")
         event.move(3, "garden.nextJacobContestPos", "garden.nextJacobContests.pos")
 
-        event.transform(15, "garden.nextJacobContests.shareAutomatically") { element ->
-            ConfigUtils.migrateIntToEnum(element, ShareContestsEntry::class.java)
-        }
         event.move(18, "garden.nextJacobContests.everywhere", "garden.nextJacobContests.showOutsideGarden")
         event.move(33, "garden.jacobContextTimesPos", "garden.jacobContestTimesPosition")
         event.move(33, "garden.jacobContextTimes", "garden.jacobContestTimes")
