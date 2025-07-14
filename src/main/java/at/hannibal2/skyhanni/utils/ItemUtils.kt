@@ -262,8 +262,6 @@ object ItemUtils {
 
     fun isRecombobulated(stack: ItemStack) = stack.isRecombobulated()
 
-    fun maxPetLevel(name: String) = if (name.contains("Golden Dragon")) 200 else 100
-
     fun getItemsInInventory(withCursorItem: Boolean = false): List<ItemStack> {
         val list: LinkedList<ItemStack> = LinkedList()
         val player = MinecraftCompat.localPlayer
