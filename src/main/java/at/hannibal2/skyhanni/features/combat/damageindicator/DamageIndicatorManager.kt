@@ -184,11 +184,14 @@ object DamageIndicatorManager {
 
         for (data in data.values) {
 
-            // TODO test end stone protector in hole? - maybe change eye pos
-//            data.ignoreBlocks =
-//                data.bossType == BossType.END_ENDSTONE_PROTECTOR && Minecraft.getMinecraft().thePlayer.isSneaking
+            val vecYOffset = when (data.bossType) {
+                BossType.END_ENDSTONE_PROTECTOR -> 3.0
+                BossType.SLAYER_SPIDER_5_1 -> 2.0
 
-            if (!data.ignoreBlocks && !data.entity.canBeSeen(70.0)) continue
+                else -> 0.0
+            }
+
+            if (!data.ignoreBlocks && !data.entity.canBeSeen(70.0, vecYOffset = vecYOffset)) continue
             if (!data.isConfigEnabled()) continue
 
             val entity = data.entity

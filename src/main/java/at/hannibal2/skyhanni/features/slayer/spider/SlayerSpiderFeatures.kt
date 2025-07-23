@@ -1,6 +1,7 @@
 package at.hannibal2.skyhanni.features.slayer.spider
 
 import at.hannibal2.skyhanni.api.event.HandleEvent
+import at.hannibal2.skyhanni.data.EntityMovementData
 import at.hannibal2.skyhanni.data.SlayerApi
 import at.hannibal2.skyhanni.data.hypixel.chat.event.SystemMessageEvent
 import at.hannibal2.skyhanni.data.mob.Mob
@@ -46,7 +47,7 @@ object SlayerSpiderFeatures {
         val mob = lastClickedTier5 ?: return
         mob.highlight(config.highlightInvincibleColor, condition = { config.highlightInvincible && mob in stuckTier5 })
         stuckTier5.add(mob)
-
+        EntityMovementData.addToTrack(mob)
     }
 
     @HandleEvent
