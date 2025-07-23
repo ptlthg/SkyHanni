@@ -44,6 +44,15 @@ object EntityOpacityManager {
         this.entities = entities
     }
 
+    //#if MC > 1.21
+    //$$ @JvmStatic
+    //$$ fun getEntityOpacity(entity: LivingEntity): Int? {
+    //$$     if (!active) return null
+    //$$     if (!canChangeOpacity(entity)) return null
+    //$$     return (opacity(entity) * 2.55).toInt()
+    //$$ }
+    //#endif
+
     private fun canChangeOpacity(entity: EntityLivingBase) = entities.containsKeys(entity) && opacity(entity) < 100
 
     private fun opacity(entity: EntityLivingBase): Int = entities[entity] ?: error("can not read opacity bc not in map")
