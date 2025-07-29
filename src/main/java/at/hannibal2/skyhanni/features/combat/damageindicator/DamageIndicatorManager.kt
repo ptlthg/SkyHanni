@@ -69,6 +69,8 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
+typealias EntityData = DamageIndicatorEntityData
+
 // TODO cut class into smaller pieces
 @SkyHanniModule
 @Suppress("LargeClass")
@@ -400,7 +402,7 @@ object DamageIndicatorManager {
             entityData.nameAbove = ""
             val customHealthText = if (health == 0L) {
                 entityData.dead = true
-                if (entityData.bossType.showDeathTime && config.timeToKillSlayer) {
+                if (entityData.bossType.isSlayer && config.timeToKillSlayer) {
                     entityData.nameAbove = entityData.timeToKill
                 }
                 "§cDead"
