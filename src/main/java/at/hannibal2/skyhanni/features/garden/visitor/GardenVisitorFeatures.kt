@@ -471,7 +471,7 @@ object GardenVisitorFeatures {
                 var copperLine = formattedLine
                 if (config.inventory.copperPrice) copperLine += " §7(paying §6$pricePerCopper §7per)"
                 if (config.inventory.copperTime) {
-                    copperLine += if (farmingTimeRequired != 0.seconds) " §7(§b$timePerCopper §7per)" else " §7(§cno speed data!§7)"
+                    copperLine += if (farmingTimeRequired != 0.seconds) " §7(paying §b$timePerCopper §7per)" else " §7(§cno speed data!§7)"
                 }
                 finalList.set(index, copperLine)
             }
